@@ -1,4 +1,4 @@
-package com.example.testespring;
+package com.example.PurpleGin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +14,7 @@ import static javafx.stage.StageStyle.UNDECORATED;
 
 
 @SpringBootApplication
-public class TesteSpringApplication extends Application{
+public class Main extends Application{
 
     public ConfigurableApplicationContext springContext;
     public Parent rootNode;
@@ -25,8 +25,8 @@ public class TesteSpringApplication extends Application{
 
     @Override
     public void init() throws Exception {
-        springContext = SpringApplication.run(TesteSpringApplication.class);
-        URL fxmlLocation = getClass().getClassLoader().getResource("hello-view.fxml");
+        springContext = SpringApplication.run(Main.class);
+        URL fxmlLocation = getClass().getClassLoader().getResource("View/Login.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         fxmlLoader.setControllerFactory(springContext::getBean);
         rootNode = fxmlLoader.load();

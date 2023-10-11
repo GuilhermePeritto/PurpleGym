@@ -1,10 +1,9 @@
-package com.example.testespring;
+package com.example.PurpleGin.Model;
 
 import jakarta.persistence.*;
 
 //import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "Usuario")
@@ -24,6 +23,10 @@ public class Usuario implements Serializable {
         this.id = id;
         this.login = login;
         this.senha = senha;
+    }
+
+    public Usuario() {
+
     }
 
     public Long getId() {

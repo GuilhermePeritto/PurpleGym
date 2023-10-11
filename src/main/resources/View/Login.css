@@ -9,7 +9,7 @@
 /* Estilo padrão do fundo do botão (pode ser substituído) */
 .button-default {
     -fx-background-color: #14161c; /* Cor de fundo padrão */
-    -fx-color: #814fff; /* Cor do texto no botão */
+    -fx-text-fill: #814fff; /* Cor do texto no botão */
     -fx-border-radius: 90px;
     -fx-cursor: pointer;
 }
@@ -17,7 +17,7 @@
 /* Exemplo de estilo alternativo */
 .button-entrar {
     -fx-background-color: #814fff; /* Cor de fundo personalizada */
-    -fx-color: #fff; /* Cor do texto no botão */
+    -fx-text-fill: #fff; /* Cor do texto no botão */
     -fx-background-radius: 15;
     -fx-cursor: pointer;
 }
@@ -25,7 +25,7 @@
 /* Exemplo de estilo adicional */
 .button-registrar {
     -fx-background-color: #14161c; /* Outra cor de fundo personalizada */
-    -fx-color: #fff; /* Cor do texto no botão */
+    -fx-text-fill: #fff; /* Cor do texto no botão */
     -fx-border-radius: 20px;
     -fx-cursor: pointer;
 }
@@ -40,7 +40,7 @@
 /* Exemplo de estilo com cor de fundo personalizada */
 .textfield-custom {
     -fx-background-color: #14161c; /* Cor de fundo personalizada */
-    -fx-color: #FFFFFFFF; /* Cor do texto no textfield */
+    -fx-text-fill: #FFFFFFFF; /* Cor do texto no textfield */
     -fx-border-color: #814fff; /* Cor da borda personalizada */
     -fx-border-radius: 20px; /* Isso define as bordas redondas */
     -fx-padding: 0 16;
@@ -49,6 +49,6 @@
 /* Exemplo de estilo adicional */
 .textfield-secondary {
     -fx-background-color: #2ecc71; /* Outra cor de fundo personalizada */
-    -fx-color: #fff; /* Cor do texto no textfield */
+    -fx-text-fill: #fff; /* Cor do texto no textfield */
     -fx-border-color: #27ae60; /* Outra cor de borda personalizada */
 }

@@ -1,5 +1,7 @@
-package com.example.testespring;
+package com.example.PurpleGin.Controller;
 
+import com.example.PurpleGin.Model.Usuario;
+import com.example.PurpleGin.Repository.UsuarioRepository;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HelloController {
+public class LoginController {
 
     @Autowired
     public UsuarioRepository usuarioRepository;

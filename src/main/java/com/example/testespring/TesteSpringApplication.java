@@ -10,6 +10,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
 
+import static javafx.stage.StageStyle.UNDECORATED;
+
 
 @SpringBootApplication
 public class TesteSpringApplication extends Application{
@@ -24,7 +26,7 @@ public class TesteSpringApplication extends Application{
     @Override
     public void init() throws Exception {
         springContext = SpringApplication.run(TesteSpringApplication.class);
-        URL fxmlLocation = getClass().getClassLoader().getResource("teste.fxml");
+        URL fxmlLocation = getClass().getClassLoader().getResource("hello-view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         fxmlLoader.setControllerFactory(springContext::getBean);
         rootNode = fxmlLoader.load();
@@ -32,7 +34,8 @@ public class TesteSpringApplication extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(rootNode));
+        stage.setScene(new Scene(rootNode, 975, 501));
+        stage.initStyle(UNDECORATED);
         stage.show();
     }
 

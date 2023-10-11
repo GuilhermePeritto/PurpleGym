@@ -34,8 +34,8 @@
    <center>
       <AnchorPane prefHeight="434.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu usuario" styleClass="textfield-custom" stylesheets="@Login.css" />
-            <PasswordField layoutX="90.0" layoutY="293.0" prefHeight="37.0" prefWidth="329.0" promptText="Insira sua senha" styleClass="textfield-custom" stylesheets="@Login.css">
+            <TextField fx:id="lblusuario" layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu usuario" styleClass="textfield-custom" stylesheets="@Login.css" />
+            <PasswordField fx:id="lblsenha" layoutX="90.0" layoutY="293.0" prefHeight="37.0" prefWidth="329.0" promptText="Insira sua senha" styleClass="textfield-custom" stylesheets="@Login.css">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></PasswordField>
@@ -100,7 +100,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label id="LblloginError" fx:id="LblloginError" alignment="CENTER" layoutX="106.0" layoutY="342.0" onInputMethodTextChanged="#entrar" prefHeight="17.0" prefWidth="298.0" textFill="#8a0909" />
+            <Label id="LblloginError" fx:id="LblAviso" alignment="CENTER" layoutX="106.0" layoutY="342.0" onInputMethodTextChanged="#entrar" prefHeight="35.0" prefWidth="298.0" textFill="#8a0909" />
          </children>
       </AnchorPane>
    </center>

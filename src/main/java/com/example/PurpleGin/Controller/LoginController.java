@@ -7,15 +7,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static javafx.scene.paint.Color.GREEN;
+import static javafx.scene.paint.Color.RED;
 
 @Component
 public class LoginController {
 
     @Autowired
     public UsuarioRepository usuarioRepository;
+    public TextField lblusuario;
+    public PasswordField lblsenha;
 
     @FXML
     private Button BtnEntrar;
@@ -30,7 +37,7 @@ public class LoginController {
     private Button BtnSair;
 
     @FXML
-    private Label LblloginError;
+    private Label LblAviso;
 
     @FXML
     void sair(ActionEvent event) {
@@ -45,18 +52,19 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        LblloginError.setText("Você digitou algo errado, por favor tente novamente!");
+        LblAviso.setText("Você digitou algo errado, por favor tente novamente!");
     }
 
     @FXML
-    void registrar() {
+    void registrar() throws Exception {
         try {
-            Usuario teste = new Usuario(null, "teste", "teste");
-            usuarioRepository.save(teste);
-
+            usuarioRepository.save(new Usuario(null, lblusuario.getText(),lblsenha.getText()));
+            LblAviso.setTextFill(GREEN);
+            LblAviso.setText("Usuário registrado com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao registrar usuário!");
-            e.printStackTrace();
+            LblAviso.setTextFill(RED);
+            LblAviso.setText(e.getMessage());
+
         }
 
     }

@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>javafx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TesteSpring</name>
-    <description>TesteSpring</description>
+    <name>PurpleGin</name>
+    <description>PurpleGin</description>
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -45,6 +45,11 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>21-ea+24</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dlsc.formsfx</groupId>
+            <artifactId>formsfx-core</artifactId>
+            <version>11.3.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -1,0 +1,34 @@
+.textfield-custom {
+    -fx-background-color: #14161c; /* Cor de fundo personalizada */
+    -fx-text-fill: #FFFFFFFF; /* Cor do texto no textfield */
+    -fx-border-color: #814fff; /* Cor da borda personalizada */
+    -fx-border-radius: 20px; /* Isso define as bordas redondas */
+    -fx-padding: 0 16;
+}
+
+.background-custom {
+    -fx-background-color: #14161c; /* Cor de fundo personalizada */
+    -fx-text-fill: #FFFFFFFF; /* Cor do texto no textfield */
+}
+
+.button-Registrar {
+    -fx-background-color: #814fff; /* Cor de fundo personalizada */
+    -fx-text-fill: #fff; /* Cor do texto no botão */
+    -fx-background-radius: 15;
+    -fx-cursor: pointer;
+}
+
+.button-Voltar {
+    -fx-background-color: #14161c; /* Cor de fundo personalizada */
+    -fx-text-fill: #814fff; /* Cor do texto no botão */
+    -fx-background-radius: 15;
+    -fx-border-radius: 20px;
+    -fx-cursor: pointer;
+}
+
+.button-Voltar:hover {
+    -fx-background-color: #814fff; /* Cor de fundo personalizada */
+    -fx-text-fill: #fff; /* Cor do texto no botão */
+    -fx-background-radius: 15;
+    -fx-cursor: pointer;
+}

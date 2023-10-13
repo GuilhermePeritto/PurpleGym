@@ -52,19 +52,20 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        LblAviso.setText("Você digitou algo errado, por favor tente novamente!");
+        LblAviso.setTextFill(GREEN);
+        LblAviso.setText("Deu voce entrou!");
     }
 
     @FXML
     void registrar() throws Exception {
         try {
-            usuarioRepository.save(new Usuario(null, lblusuario.getText(),lblsenha.getText()));
+           // usuarioRepository.save(new Usuario(null, lblusuario.getText(),lblsenha.getText()));
             LblAviso.setTextFill(GREEN);
             LblAviso.setText("Usuário registrado com sucesso!");
         } catch (Exception e) {
+
             LblAviso.setTextFill(RED);
             LblAviso.setText(e.getMessage());
-
         }
 
     }

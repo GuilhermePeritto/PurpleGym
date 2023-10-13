@@ -1,4 +1,4 @@
-package com.example.PurpleGin;
+package com.example.PurpleGym;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

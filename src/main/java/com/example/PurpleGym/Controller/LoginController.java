@@ -1,7 +1,6 @@
-package com.example.PurpleGin.Controller;
+package com.example.PurpleGym.Controller;
 
-import com.example.PurpleGin.Model.Usuario;
-import com.example.PurpleGin.Repository.UsuarioRepository;
+import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

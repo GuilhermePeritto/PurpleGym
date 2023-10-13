@@ -1,4 +1,4 @@
-package com.example.PurpleGin.Model;
+package com.example.PurpleGym.Model;
 
 import jakarta.persistence.*;
 

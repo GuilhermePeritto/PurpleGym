@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGin.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.LoginController">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="337.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,12 +44,12 @@
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="218.0" layoutY="102.0" opacity="0.71" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo!" wrappingWidth="55.984375">
+            <Text fill="WHITE" layoutX="218.0" layoutY="137.0" opacity="0.71" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo!" wrappingWidth="55.984375">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="8.0" layoutY="492.0" opacity="0.49" strokeType="OUTSIDE" strokeWidth="0.0" text="© PurpleGin by Guilherme Peritto" />
+            <Text fill="WHITE" layoutX="8.0" layoutY="492.0" opacity="0.49" strokeType="OUTSIDE" strokeWidth="0.0" text="© PurpleGym by Guilherme Peritto" />
             <Text fill="WHITE" layoutX="88.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SENHA">
                <font>
                   <Font name="System Bold" size="10.0" />
@@ -67,7 +67,7 @@
                      </cursor></Button>
                </children>
             </Pane>
-            <Text fill="WHITE" layoutX="180.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entre agora" wrappingWidth="132.984375">
+            <Text fill="WHITE" layoutX="180.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entre agora" wrappingWidth="132.984375">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -101,6 +101,11 @@
                </graphic>
             </Button>
             <Label id="LblloginError" fx:id="LblAviso" alignment="CENTER" layoutX="106.0" layoutY="342.0" onInputMethodTextChanged="#entrar" prefHeight="35.0" prefWidth="298.0" textFill="#8a0909" />
+            <ImageView fitHeight="63.0" fitWidth="151.0" layoutX="35.0" layoutY="31.0">
+               <image>
+                  <Image url="@../Image/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

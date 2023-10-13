@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PurpleGin" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <module name="javafx" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.PurpleGin.Main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.PurpleGym.Main" />
     <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/javafx-sdk-21/lib --add-modules=javafx.controls,javafx.fxml" />
     <method v="2">
       <option name="Make" enabled="true" />

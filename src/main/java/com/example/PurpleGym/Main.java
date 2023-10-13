@@ -1,4 +1,4 @@
-package com.example.PurpleGin;
+package com.example.PurpleGym;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

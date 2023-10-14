@@ -17,6 +17,9 @@ import static javafx.scene.paint.Color.RED;
 @Component
 public class RegistrarController {
 
+    @Autowired
+    public UsuarioRepository usuarioRepository;
+
     @FXML
     private Button BtnFechar;
 
@@ -39,16 +42,13 @@ public class RegistrarController {
     private Button btnLoginGoogle;
 
     @FXML
-    private TextField lblEmail;
+    public TextField lblEmail;
 
     @FXML
-    private TextField lblNome;
+    public TextField lblNome;
 
     @FXML
-    private PasswordField lblSenha;
-
-    @Autowired
-    public UsuarioRepository usuarioRepository;
+    public PasswordField lblSenha;
 
     @FXML
     void minimizar(ActionEvent event) {
@@ -67,9 +67,12 @@ public class RegistrarController {
                 new Exception("Você não preencheu o campo Senha, favor tentar novamente!");
             } else {
                 usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
+                Main.trocarTela("avisos");
+                AvisosController.AlertaSucesso("Usuário cadastrado com sucesso!");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Main.trocarTela("avisos");
+            AvisosController.AlertaFalha(e.getMessage());
         }
 
     }

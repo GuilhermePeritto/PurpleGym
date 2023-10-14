@@ -1,0 +1,20 @@
+.background-transparente {
+    -fx-background-color: transparent;
+}
+
+.background-baixo {
+    -fx-background-color: #8501E5;
+    -fx-background-radius:0 0 50 50;
+}
+
+.background-custom {
+    -fx-background-color: #14161c;
+    -fx-background-radius: 30;
+}
+
+.button-ok {
+    -fx-background-color: #8501E5;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 15;
+    -fx-cursor: pointer;
+}

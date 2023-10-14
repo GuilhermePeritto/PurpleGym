@@ -2,92 +2,118 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="559.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="501.0" prefWidth="975.0" styleClass="background-registrar" stylesheets="@Registrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.RegistrarController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background-custom" stylesheets="@Registrar.css" BorderPane.alignment="CENTER">
+      <AnchorPane layoutX="342.0" prefHeight="520.0" prefWidth="571.0" styleClass="background-registrar" stylesheets="@Registrar.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="128.0" layoutY="37.0" prefHeight="26.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="128.0" layoutY="88.0" prefHeight="26.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <PasswordField layoutX="128.0" layoutY="140.0" prefHeight="26.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="128.0" layoutY="193.0" prefHeight="26.0" prefWidth="140.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="285.0" layoutY="193.0" prefHeight="26.0" prefWidth="187.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="128.0" layoutY="245.0" prefHeight="26.0" prefWidth="140.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="285.0" layoutY="245.0" prefHeight="26.0" prefWidth="187.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="128.0" layoutY="346.0" prefHeight="26.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <ComboBox layoutX="128.0" layoutY="396.0" prefHeight="25.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <ComboBox layoutX="128.0" layoutY="449.0" prefHeight="25.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <TextField layoutX="128.0" layoutY="296.0" prefHeight="26.0" prefWidth="344.0" styleClass="textfield-custom" stylesheets="@Registrar.css" />
-            <Text fill="WHITE" layoutX="128.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Completo">
+            <ImageView fitHeight="420.0" fitWidth="262.0" layoutX="16.0" layoutY="50.0" opacity="0.13">
+               <image>
+                  <Image url="@../Image/Plogo.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="lblNome" layoutX="155.0" layoutY="159.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira seu nome" styleClass="textfield-invisivel" stylesheets="@Registrar.css" />
+            <TextField fx:id="lblEmail" layoutX="155.0" layoutY="222.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira seu e-mail" styleClass="textfield-invisivel" stylesheets="@Registrar.css" />
+            <PasswordField fx:id="lblSenha" layoutX="155.0" layoutY="281.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira uma senha" styleClass="textfield-invisivel" stylesheets="@Registrar.css" />
+            <Text fill="WHITE" layoutX="155.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Completo">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="128.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
+            <Text fill="WHITE" layoutX="155.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="128.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
+            <Text fill="WHITE" layoutX="155.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="128.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone">
+            <Button fx:id="btnFinalizarRegistro" layoutX="156.0" layoutY="343.0" mnemonicParsing="false" onAction="#finalizarRegistro" prefHeight="37.0" prefWidth="327.0" styleClass="button-Registrar" stylesheets="@Registrar.css" text="Registrar" />
+            <Text fill="WHITE" layoutX="155.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crie sua conta!" wrappingWidth="189.3935546875">
                <font>
-                  <Font name="System Bold" size="9.0" />
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="282.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Idade">
+            <Text fill="WHITE" layoutX="157.0" layoutY="395.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="Já possui conta?">
                <font>
-                  <Font name="System Bold" size="9.0" />
+                  <Font name="System Bold" size="10.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="128.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cep">
+            <Button fx:id="BtnVoltarTelaEntrar" layoutX="232.0" layoutY="381.0" mnemonicParsing="false" onAction="#voltarTelaEntrar" prefHeight="4.0" prefWidth="44.0" styleClass="background-custom" stylesheets="@Registrar.css" text="Entrar" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="9.0" />
+                  <Font name="System Bold" size="10.0" />
                </font>
-            </Text>
-            <Text fill="WHITE" layoutX="286.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rua">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="128.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bairro">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="131.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="129.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="130.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pais">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Text>
-            <Button layoutX="340.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="132.0" styleClass="button-Registrar" stylesheets="@Registrar.css" text="Registrar" />
-            <Button layoutX="128.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="140.0" stylesheets="@Registrar.css" text="Voltar">
-               <styleClass>
-                  <String fx:value="button-Voltar" />
-                  <String fx:value="button-VoltarHover" />
-               </styleClass>
+            </Button>
+            <Button fx:id="btnLoginGoogle" alignment="BASELINE_RIGHT" layoutX="140.0" layoutY="433.0" mnemonicParsing="false" onAction="#loginGoogle" prefHeight="37.0" prefWidth="169.0" styleClass="button-google" stylesheets="@Registrar.css" text="Entrar com o Google" />
+            <Button fx:id="btnLoginFacebook" alignment="BASELINE_RIGHT" layoutX="326.0" layoutY="433.0" mnemonicParsing="false" onAction="#loginFacebook" prefHeight="37.0" prefWidth="169.0" styleClass="button-facebook" stylesheets="@Registrar.css" text="Entrar com o Facebook" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="333.0" layoutY="437.0">
+               <image>
+                  <Image url="@../Image/icone-facebook.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="155.0" layoutY="438.0">
+               <image>
+                  <Image url="@../Image/google_icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="BtnFechar" layoutX="597.0" layoutY="-2.0" mnemonicParsing="false" onAction="#fechar" prefHeight="15.0" prefWidth="12.0" styleClass="button-invisivel" stylesheets="@Registrar.css">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="21.0">
+                     <image>
+                        <Image url="@../Image/exit_white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="BtnMinimizar" layoutX="557.0" layoutY="-6.0" mnemonicParsing="false" onAction="#minimizar" prefHeight="20.0" prefWidth="5.0" styleClass="button-invisivel" stylesheets="@Registrar.css">
+               <graphic>
+                  <ImageView styleClass="button-invisivel">
+                     <image>
+                        <Image url="@../Image/minimaze_white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </AnchorPane>
    </center>
+   <left>
+      <AnchorPane prefHeight="501.0" prefWidth="413.0" styleClass="background-imagem" stylesheets="@Registrar.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="BtnVoltar" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="23.0" stylesheets="@Registrar.css">
+               <styleClass>
+                  <String fx:value="button-Voltar" />
+                  <String fx:value="button-VoltarHover" />
+               </styleClass>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../Image/voltar_branco.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="516.0" fitWidth="248.0" layoutX="117.0" layoutY="-15.0">
+               <image>
+                  <Image url="@../Image/quadro%20vertical%20academia.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="37.0" fitWidth="94.0" layoutX="7.0" layoutY="462.0">
+               <image>
+                  <Image url="@../Image/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
 </BorderPane>

@@ -34,17 +34,17 @@
    <center>
       <AnchorPane prefHeight="434.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="lblusuario" layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu usuario" styleClass="textfield-custom" stylesheets="@Login.css" />
+            <TextField fx:id="lblusuario" layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu usuário" styleClass="textfield-custom" stylesheets="@Login.css" />
             <PasswordField fx:id="lblsenha" layoutX="90.0" layoutY="293.0" prefHeight="37.0" prefWidth="329.0" promptText="Insira sua senha" styleClass="textfield-custom" stylesheets="@Login.css">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></PasswordField>
-            <Text fill="WHITE" layoutX="91.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USUARIO">
+            <Text fill="WHITE" layoutX="91.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USUÁRIO">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="218.0" layoutY="137.0" opacity="0.71" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo!" wrappingWidth="55.984375">
+            <Text fill="WHITE" layoutX="218.0" layoutY="137.0" opacity="0.71" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem-vindo!" wrappingWidth="55.984375">
                <font>
                   <Font name="System Bold" size="9.0" />
                </font>

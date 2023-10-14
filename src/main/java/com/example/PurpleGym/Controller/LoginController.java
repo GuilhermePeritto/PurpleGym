@@ -1,5 +1,6 @@
 package com.example.PurpleGym.Controller;
 
+import com.example.PurpleGym.Main;
 import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -58,11 +59,8 @@ public class LoginController {
     @FXML
     void registrar() throws Exception {
         try {
-           // usuarioRepository.save(new Usuario(null, lblusuario.getText(),lblsenha.getText()));
-            LblAviso.setTextFill(GREEN);
-            LblAviso.setText("Usuário registrado com sucesso!");
+            Main.trocarTela("registrar");
         } catch (Exception e) {
-
             LblAviso.setTextFill(RED);
             LblAviso.setText(e.getMessage());
         }

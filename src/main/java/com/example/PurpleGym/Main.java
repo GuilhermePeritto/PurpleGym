@@ -17,7 +17,11 @@ import static javafx.stage.StageStyle.UNDECORATED;
 public class Main extends Application{
 
     public ConfigurableApplicationContext springContext;
-    public Parent rootNode;
+    public static Parent rootNode;
+
+    public static Stage stage;
+    public static Scene loginView;
+    public static Scene registrarView;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -33,14 +37,32 @@ public class Main extends Application{
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(rootNode, 975, 501));
-        stage.initStyle(UNDECORATED);
-        stage.show();
+    public void start(Stage startStage) throws Exception {
+        stage = startStage;
+        Parent fxmlLoginView = FXMLLoader.load(getClass().getClassLoader().getResource("View/Login.fxml"));
+        loginView = new Scene(fxmlLoginView, 975, 501);
+        Parent fxmlRegistrarView = FXMLLoader.load(getClass().getClassLoader().getResource("View/Registrar.fxml"));
+        registrarView = new Scene(fxmlRegistrarView, 975, 501);
+
+
+        startStage.setScene(new Scene(rootNode, 975, 501));
+        startStage.initStyle(UNDECORATED);
+        startStage.show();
     }
 
     @Override
     public void stop() throws Exception {
         springContext.stop();
+    }
+
+    public static void trocarTela(String tela){
+        switch(tela){
+            case "login":
+                stage.setScene(loginView);
+                break;
+            case "registrar":
+                stage.setScene(registrarView);
+                break;
+        }
     }
 }

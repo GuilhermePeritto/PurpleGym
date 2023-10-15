@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static javafx.scene.paint.Color.RED;
-
 @Component
 public class RegistrarController {
 
@@ -68,6 +66,9 @@ public class RegistrarController {
             } else {
                 usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
                 AvisosController.AlertaSucesso("Usuário cadastrado com sucesso!");
+                lblEmail.setText("");
+                lblNome.setText("");
+                lblSenha.setText("");
             }
         } catch (Exception e) {
             Main.trocarTela("avisos");

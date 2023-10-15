@@ -1,6 +1,7 @@
 package com.example.PurpleGym.Controller;
 
 import com.example.PurpleGym.Main;
+import com.example.PurpleGym.Model.Usuario;
 import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -52,7 +53,7 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        LblAviso.setTextFill(GREEN);
+        usuarioRepository.exists(new Usuario(lblusuario.getText(), lblsenha.getText()));
         LblAviso.setText("Deu voce entrou!");
     }
 

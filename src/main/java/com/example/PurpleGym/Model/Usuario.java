@@ -28,6 +28,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public Usuario(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Usuario() {
 
     }

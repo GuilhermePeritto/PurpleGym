@@ -5,11 +5,15 @@
 .background-baixo {
     -fx-background-color: #8501E5;
     -fx-background-radius:0 0 50 50;
+    -fx-border-color: #14161c;
+    -fx-border-radius: 0 0 50 50;
 }
 
 .background-custom {
     -fx-background-color: #14161c;
     -fx-background-radius: 30;
+    -fx-border-color: #8501E5;
+    -fx-border-radius: 30;
 }
 
 .button-ok {

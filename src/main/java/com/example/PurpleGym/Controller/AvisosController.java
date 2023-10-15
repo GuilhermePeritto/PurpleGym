@@ -20,18 +20,19 @@ public class AvisosController {
     @FXML
     private static ImageView imgIcone = new ImageView();
     @FXML
-    private static Label lblMensagem = new Label(" ");
+    private static Label lblMensagem = new Label();
 
-    static void AlertaSucesso(String mensagem) {
-        Main.trocarTela("avisos");
-        lblMensagem.setTextFill(Color.WHITE);
+
+    @FXML
+    public static void AlertaSucesso(String mensagem) {
         lblMensagem.setText(mensagem);
         imgIcone.setImage(new javafx.scene.image.Image("/Image/iconeSucesso.png"));
+        Main.trocarTela("avisos");
     }
-
+    @FXML
     static void AlertaFalha(String mensagem) {
         lblMensagem.setText(mensagem);
-        imgIcone.setImage(new javafx.scene.image.Image("/Imagens/iconeFalha.png"));
+        imgIcone.setImage(new javafx.scene.image.Image("/Image/iconeFalha.png"));
     }
 
     @FXML

@@ -26,6 +26,7 @@ public class Main extends Application{
     public static Scene loginView;
     public static Scene registrarView;
     public static Scene avisosView;
+    static Stage stageAvisos = new Stage();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -75,12 +76,15 @@ public class Main extends Application{
                 stage.setScene(registrarView);
                 break;
             case "avisos":
-                Stage stageAvisos = new Stage();
                 stageAvisos.setScene(avisosView);
                 avisosView.setFill(Color.TRANSPARENT);
                 stageAvisos.initStyle(TRANSPARENT);
                 stageAvisos.show();
                 break;
         }
+    }
+
+    public static void desativarAvisos() {
+        stageAvisos.close();
     }
 }

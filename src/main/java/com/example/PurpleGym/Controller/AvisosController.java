@@ -37,6 +37,7 @@ public class AvisosController {
     @FXML
     void onClickBtnOk(ActionEvent event) throws Exception {
         Main.trocarTela("login");
+        Main.desativarAvisos();
     }
 
 }

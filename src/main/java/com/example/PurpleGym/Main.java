@@ -3,6 +3,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
 
+import static javafx.stage.StageStyle.TRANSPARENT;
 import static javafx.stage.StageStyle.UNDECORATED;
 
 
@@ -72,7 +75,11 @@ public class Main extends Application{
                 stage.setScene(registrarView);
                 break;
             case "avisos":
-                stage.setScene(avisosView);
+                Stage stageAvisos = new Stage();
+                stageAvisos.setScene(avisosView);
+                avisosView.setFill(Color.TRANSPARENT);
+                stageAvisos.initStyle(TRANSPARENT);
+                stageAvisos.show();
                 break;
         }
     }

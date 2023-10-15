@@ -67,7 +67,6 @@ public class RegistrarController {
                 new Exception("Você não preencheu o campo Senha, favor tentar novamente!");
             } else {
                 usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
-                Main.trocarTela("avisos");
                 AvisosController.AlertaSucesso("Usuário cadastrado com sucesso!");
             }
         } catch (Exception e) {

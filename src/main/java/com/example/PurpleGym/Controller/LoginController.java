@@ -53,8 +53,9 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        usuarioRepository.exists(new Usuario(lblusuario.getText(), lblsenha.getText()));
+        //usuarioRepository.exists(new Usuario(lblusuario.getText(), lblsenha.getText()));
         LblAviso.setText("Deu voce entrou!");
+        Main.trocarTela("dashboard");
     }
 
     @FXML

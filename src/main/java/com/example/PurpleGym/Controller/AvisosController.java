@@ -18,19 +18,16 @@ public class AvisosController {
     @FXML
     private Button btnOk;
     @FXML
-    private static ImageView imgIcone = new ImageView();
+    private ImageView imgIcone = new ImageView();
     @FXML
-    private static Label lblMensagem = new Label();
+    private Label lblMensagem = new Label();
 
 
-    @FXML
-    public static void AlertaSucesso(String mensagem) {
-        lblMensagem.setText(mensagem);
-        imgIcone.setImage(new javafx.scene.image.Image("/Image/iconeSucesso.png"));
+    public void AlertaSucesso() {
         Main.trocarTela("avisos");
     }
     @FXML
-    static void AlertaFalha(String mensagem) {
+    public void AlertaFalha(String mensagem) {
         lblMensagem.setText(mensagem);
         imgIcone.setImage(new javafx.scene.image.Image("/Image/iconeFalha.png"));
     }
@@ -41,4 +38,7 @@ public class AvisosController {
         Main.desativarAvisos();
     }
 
+    public AvisosController() {
+
+    }
 }

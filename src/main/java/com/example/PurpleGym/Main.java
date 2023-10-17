@@ -26,6 +26,7 @@ public class Main extends Application{
     public static Scene loginView;
     public static Scene registrarView;
     public static Scene avisosView;
+    public static Scene dashBoardView;
     static Stage stageAvisos = new Stage();
 
     public static void main(String[] args) {
@@ -52,10 +53,18 @@ public class Main extends Application{
         fxmlLoaderRegistrar.setControllerFactory(springContext::getBean);
         Parent fxmlRegistrarView = fxmlLoaderRegistrar.load();
         registrarView = new Scene(fxmlRegistrarView, 975, 501);
-        FXMLLoader fxmlLoaderAvisos = new FXMLLoader(getClass().getClassLoader().getResource("View/Avisos.fxml"));
+        FXMLLoader fxmlLoaderAvisos = new FXMLLoader(getClass().getClassLoader().getResource("View/AvisoSucesso.fxml"));
         fxmlLoaderAvisos.setControllerFactory(springContext::getBean);
         Parent fxmlAvisosView = fxmlLoaderAvisos.load();
         avisosView = new Scene(fxmlAvisosView, 415, 400);
+        avisosView.setFill(Color.TRANSPARENT);
+        FXMLLoader fxmlLoaderDashBoard = new FXMLLoader(getClass().getClassLoader().getResource("View/DashBoard.fxml"));
+        fxmlLoaderDashBoard.setControllerFactory(springContext::getBean);
+        Parent fxmlDashBoardView = fxmlLoaderDashBoard.load();
+        dashBoardView = new Scene(fxmlDashBoardView, 975, 501);
+        dashBoardView.setFill(Color.TRANSPARENT);
+        startStage.setTitle("PurpleGym");
+
 
         startStage.setScene(new Scene(rootNode, 975, 501));
         startStage.initStyle(UNDECORATED);
@@ -76,10 +85,12 @@ public class Main extends Application{
                 stage.setScene(registrarView);
                 break;
             case "avisos":
-                stageAvisos.setScene(avisosView);
-                avisosView.setFill(Color.TRANSPARENT);
                 stageAvisos.initStyle(TRANSPARENT);
+                stageAvisos.setScene(avisosView);
                 stageAvisos.show();
+                break;
+                case "dashboard":
+                stage.setScene(dashBoardView);
                 break;
         }
     }

@@ -1,0 +1,15 @@
+.background-MenuSlider {
+    -fx-background-color: linear-gradient(to top, #8501E5, #6B279C);
+    -fx-background-radius: 40;
+}
+
+.background-dashboard {
+    -fx-background-color: #14161c;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #8501E5;
+}
+
+.background {
+    -fx-background-color: #14161c;
+}

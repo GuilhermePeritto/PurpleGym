@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="415.0" styleClass="background-transparente" stylesheets="@Avisos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.AvisosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="415.0" styleClass="background-transparente" stylesheets="@Avisos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.AvisosController">
    <center>
       <AnchorPane prefHeight="261.0" prefWidth="330.0" styleClass="background-custom" stylesheets="@Avisos.css" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="lblMensagem" alignment="CENTER" layoutX="41.0" layoutY="102.0" prefHeight="44.0" prefWidth="262.0" text="carro" textAlignment="JUSTIFY" textFill="WHITE" />
+            <Label fx:id="lblMensagem" alignment="CENTER" layoutX="41.0" layoutY="102.0" prefHeight="44.0" prefWidth="262.0" text="Registro salvo com sucesso!" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </center>

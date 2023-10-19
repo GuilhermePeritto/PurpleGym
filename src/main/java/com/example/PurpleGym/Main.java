@@ -61,7 +61,7 @@ public class Main extends Application{
         FXMLLoader fxmlLoaderDashBoard = new FXMLLoader(getClass().getClassLoader().getResource("View/DashBoard.fxml"));
         fxmlLoaderDashBoard.setControllerFactory(springContext::getBean);
         Parent fxmlDashBoardView = fxmlLoaderDashBoard.load();
-        dashBoardView = new Scene(fxmlDashBoardView, 975, 501);
+        dashBoardView = new Scene(fxmlDashBoardView, 1920, 1080);
         dashBoardView.setFill(Color.TRANSPARENT);
         startStage.setTitle("PurpleGym");
 
@@ -91,6 +91,7 @@ public class Main extends Application{
                 break;
                 case "dashboard":
                 stage.setScene(dashBoardView);
+                stage.setMaximized(true);
                 break;
         }
     }

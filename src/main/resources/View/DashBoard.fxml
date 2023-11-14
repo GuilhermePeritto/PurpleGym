@@ -7,59 +7,40 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1920.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
-   <center>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="786.0" prefWidth="1220.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="10.0" right="10.0" top="5.0" />
-         </BorderPane.margin>
-         <children>
-            <AnchorPane fx:id="dashBoardPermissoes" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="822.0" prefHeight="58.0" prefWidth="217.0" text="Permissões" textAlignment="JUSTIFY" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="dashBoardProdutos" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="818.0" layoutY="-2.0" prefHeight="58.0" prefWidth="186.0" text="Produtos" textAlignment="JUSTIFY" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="dashBoardClientes" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="844.0" layoutY="-2.0" prefHeight="27.0" prefWidth="158.0" text="Clientes" textAlignment="JUSTIFY" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1920.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
    <left>
-      <VBox fx:id="menuSlider" prefHeight="1065.0" prefWidth="50.0" styleClass="background-MenuSlider" BorderPane.alignment="CENTER">
+      <VBox fx:id="menuSlider" prefHeight="885.0" prefWidth="6.0" styleClass="background-MenuSlider" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="-25.0" top="5.0" />
+            <Insets bottom="10.0" left="10.0" top="5.0" />
          </BorderPane.margin>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
          <children>
-            <Button fx:id="clientesBtn" centerShape="false" ellipsisString="" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#ClientesBtnEvent" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+            <Button fx:id="homeBtn" centerShape="false" ellipsisString="" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#HomeBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../Image/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <VBox.margin>
-                  <Insets left="10.0" top="50.0" />
+                  <Insets top="70.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="clientesBtn" centerShape="false" ellipsisString="" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#ClientesBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="37.0">
                      <image>
@@ -67,13 +48,10 @@
                      </image>
                   </ImageView>
                </graphic>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
             </Button>
-            <Button fx:id="produtosBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#ProdutosBtnEvent" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
+            <Button fx:id="produtosBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#ProdutosBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="37.0">
@@ -83,38 +61,10 @@
                   </ImageView>
                </graphic>
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
-            <Button disable="true" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" text="Button" visible="false">
-               <VBox.margin>
-                  <Insets left="10.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-            <Button disable="true" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" text="Button" visible="false">
-               <VBox.margin>
-                  <Insets left="10.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="permissaoBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#PermissaoBtnEvent" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
-               <VBox.margin>
-                  <Insets left="10.0" top="350.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@../Image/permissao.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="perfilBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0" />
-               </VBox.margin>
+            <Button fx:id="perfilBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#PerfilBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="37.0">
                      <image>
@@ -123,10 +73,80 @@
                   </ImageView>
                </graphic>
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font size="16.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Line fx:id="lineEspacamento" endX="-31.82843017578125" endY="-0.4143444299697876" startX="10.464462280273438" startY="-0.4142979383468628" stroke="#343544">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </Line>
+            <Button fx:id="configuracaoBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#ConfiguracaoBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../Image/configuracao.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="logoutBtn" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#LogoutBtnEvent" prefHeight="45.0" prefWidth="54.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../Image/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>
    </left>
+   <center>
+      <BorderPane prefHeight="860.0" prefWidth="1826.0" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="885.0" prefWidth="1813.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="40.0" left="30.0" right="10.0" />
+               </BorderPane.margin>
+               <children>
+                  <AnchorPane fx:id="dashBoardConfiguracao" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardProdutos" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardClientes" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardPerfil" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardHome" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <HBox prefHeight="67.0" prefWidth="1856.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="moduloLbl" prefHeight="72.0" prefWidth="231.0" textFill="WHITE">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </center>
 </BorderPane>

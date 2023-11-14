@@ -1,30 +1,29 @@
 .background-MenuSlider {
-    -fx-background-color: linear-gradient(to top , #067082 , #09ABC7 , #0AC8E8 ,#0AC1E0 );
+    -fx-background-color: #1d1e3d;
     -fx-background-radius: 30;
-    -fx-border-color: #0BDAFC;
     -fx-border-radius: 30;
 }
 
 .background-dashboard {
-    -fx-background-color: #2C313C;
-    -fx-background-radius: 0 20 20 0;
-    -fx-border-radius: 0 20 20 0;
-    -fx-border-color: #0BDAFC;
+    -fx-background-color: #1d1e3d;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .background {
-    -fx-background-color: #14161c;
+    -fx-background-color: #15152f;
 }
 
 .background-icones {
     -fx-alignment: baseline-left;
-    -fx-background-insets: 0, 1 1 1 1, 2 2 2 2, 3 3 3 3;
-    -fx-background-radius: 30;
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
 
 .background-icones:pressed {
-    -fx-background-insets: 4 4 4 4, 5 5 5 5, 6 6 6 6, 7 7 7 7;
-    -fx-background-color: derive(#0AC1E0, 20%);
+    -fx-background-color: linear-gradient(to right , #14142e , #0059c8 , #502e8f ,#7f50ee, #cd3bca);
+}
+
+.background-icones:hover {
+    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
 }

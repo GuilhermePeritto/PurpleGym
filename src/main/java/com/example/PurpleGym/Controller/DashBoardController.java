@@ -85,7 +85,7 @@ public class DashBoardController {
     }
 
     private void shrinkMenuSlider() {
-        animateWidth(ORIGINAL_WIDTH);
+        animateWidth(60.0);
         produtosBtn.setText("");
         configuracaoBtn.setText("");
         perfilBtn.setText("");

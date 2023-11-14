@@ -79,7 +79,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Line fx:id="lineEspacamento" endX="-31.82843017578125" endY="-0.4143444299697876" startX="10.464462280273438" startY="-0.4142979383468628" stroke="#343544">
+            <Line fx:id="lineEspacamento" endX="50.757354736328125" endY="-0.414251446723938" startX="10.464462280273438" startY="-0.4142979383468628" stroke="#343544">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
@@ -126,11 +126,66 @@
                </BorderPane.margin>
                <children>
                   <AnchorPane fx:id="dashBoardConfiguracao" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane fx:id="dashBoardProdutos" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane fx:id="dashBoardClientes" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardProdutos" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="listaProdutosBtn" contentDisplay="TOP" ellipsisString="" layoutX="84.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Produtos" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/produtos.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="relatorioProdutosBtn" contentDisplay="TOP" layoutX="282.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Relatorios" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/imprimir.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="dashBoardClientes" layoutX="-11.0" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="listaClientesBtn" contentDisplay="TOP" ellipsisString="" layoutX="95.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Clientes" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/cliente.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="relatorioClientesBtn" contentDisplay="TOP" layoutX="293.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Relatorios" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/imprimir.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
                   <AnchorPane fx:id="dashBoardPerfil" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="dashBoardHome" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </AnchorPane>
          </center>
          <top>

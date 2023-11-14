@@ -28,3 +28,28 @@
 .background-icones:hover {
     -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
 }
+
+.background-icones:disabled {
+    -fx-background-color: #14161c;
+}
+
+/*.background-icones-dashboard {*/
+/*    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);*/
+/*    -fx-background-radius: 20;*/
+/*    -fx-border-color: #14161c;*/
+/*    -fx-border-radius: 20;*/
+/*}*/
+
+.background-icones-dashboard {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 20;
+    -fx-border-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
+    -fx-border-radius: 20;
+}
+
+.background-icones-dashboard:pressed {
+    -fx-background-insets: 0, 2;
+    -fx-background-color: derive(#15152f, 20%);
+    -fx-border-color: linear-gradient(to right, #1f2a62, #532c89, #cd3bca);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 10, 0, 0, 0);
+}

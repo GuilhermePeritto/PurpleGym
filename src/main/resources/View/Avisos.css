@@ -3,7 +3,7 @@
 }
 
 .background-baixo {
-    -fx-background-color: #8501E5;
+    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
     -fx-background-radius:0 0 50 50;
     -fx-border-color: #14161c;
     -fx-border-radius: 0 0 50 50;
@@ -16,8 +16,15 @@
     -fx-border-radius: 30;
 }
 
+.background-circulo {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 100%, #cd3bca, #532c89 ,#1f2a62);
+    -fx-background-radius: 50;
+    -fx-border-color: #8501E5;
+    -fx-border-radius: 50;
+}
+
 .button-ok {
-    -fx-background-color: #8501E5;
+    -fx-background-color: linear-gradient(to right , #cd3bca ,#1f2a62);
     -fx-text-fill: #fff;
     -fx-background-radius: 15;
     -fx-cursor: pointer;

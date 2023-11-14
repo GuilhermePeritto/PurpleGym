@@ -16,7 +16,7 @@
 
 /* Exemplo de estilo alternativo */
 .button-entrar {
-    -fx-background-color: #8501E5;
+    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
     /* Cor de fundo personalizada */
     -fx-text-fill: #fff; /* Cor do texto no botão */
     -fx-background-radius: 15;
@@ -31,6 +31,11 @@
     -fx-cursor: pointer;
 }
 
+button-registrar:pressed {
+    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 10, 0, 0, 0);
+}
+
 .textfield {
     -fx-padding: 8px; /* Ajuste o preenchimento conforme necessário */
     -fx-border-radius: 20px; /* Isso define as bordas redondas */
@@ -42,7 +47,7 @@
 .textfield-custom {
     -fx-background-color: #14161c; /* Cor de fundo personalizada */
     -fx-text-fill: #FFFFFFFF; /* Cor do texto no textfield */
-    -fx-border-color: #8501E5; /* Cor da borda personalizada */
+    -fx-border-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62); /* Cor da borda personalizada */
     -fx-border-radius: 20px; /* Isso define as bordas redondas */
     -fx-padding: 0 16;
 }

@@ -21,7 +21,8 @@
 
 
 .background-icones:pressed {
-    -fx-background-color: linear-gradient(to right , #14142e , #0059c8 , #502e8f ,#7f50ee, #cd3bca);
+    -fx-background-color: linear-gradient(to right , #1f2a62, #532c89 ,#cd3bca);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 10, 0, 0, 0);
 }
 
 .background-icones:hover {

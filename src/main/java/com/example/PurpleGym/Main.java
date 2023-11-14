@@ -1,4 +1,5 @@
 package com.example.PurpleGym;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,12 +13,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URL;
 
-import static javafx.stage.StageStyle.TRANSPARENT;
-import static javafx.stage.StageStyle.UNDECORATED;
+import static javafx.stage.StageStyle.*;
 
 
 @SpringBootApplication
-public class Main extends Application{
+public class Main extends Application {
 
     public ConfigurableApplicationContext springContext;
     public static Parent rootNode;
@@ -28,6 +28,7 @@ public class Main extends Application{
     public static Scene avisosView;
     public static Scene dashBoardView;
     static Stage stageAvisos = new Stage();
+    static Stage stageDashBoard = new Stage();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -45,23 +46,30 @@ public class Main extends Application{
     @Override
     public void start(Stage startStage) throws Exception {
         stage = startStage;
+
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(getClass().getClassLoader().getResource("View/Login.fxml"));
         fxmlLoaderLogin.setControllerFactory(springContext::getBean);//passa o contexto para o banco de dados
         Parent fxmlLoginView = fxmlLoaderLogin.load();
         loginView = new Scene(fxmlLoginView, 975, 501);
+
+
         FXMLLoader fxmlLoaderRegistrar = new FXMLLoader(getClass().getClassLoader().getResource("View/Registrar.fxml"));
         fxmlLoaderRegistrar.setControllerFactory(springContext::getBean);
         Parent fxmlRegistrarView = fxmlLoaderRegistrar.load();
         registrarView = new Scene(fxmlRegistrarView, 975, 501);
+
+
         FXMLLoader fxmlLoaderAvisos = new FXMLLoader(getClass().getClassLoader().getResource("View/AvisoSucesso.fxml"));
         fxmlLoaderAvisos.setControllerFactory(springContext::getBean);
         Parent fxmlAvisosView = fxmlLoaderAvisos.load();
         avisosView = new Scene(fxmlAvisosView, 415, 400);
         avisosView.setFill(Color.TRANSPARENT);
+
+
         FXMLLoader fxmlLoaderDashBoard = new FXMLLoader(getClass().getClassLoader().getResource("View/DashBoard.fxml"));
         fxmlLoaderDashBoard.setControllerFactory(springContext::getBean);
         Parent fxmlDashBoardView = fxmlLoaderDashBoard.load();
-        dashBoardView = new Scene(fxmlDashBoardView, 1920, 1080);
+        dashBoardView = new Scene(fxmlDashBoardView, 800, 600);
         dashBoardView.setFill(Color.TRANSPARENT);
         startStage.setTitle("PurpleGym");
 
@@ -76,8 +84,8 @@ public class Main extends Application{
         springContext.stop();
     }
 
-    public static void trocarTela(String tela){
-        switch(tela){
+    public static void trocarTela(String tela) {
+        switch (tela) {
             case "login":
                 stage.setScene(loginView);
                 break;
@@ -89,12 +97,17 @@ public class Main extends Application{
                 stageAvisos.setScene(avisosView);
                 stageAvisos.show();
                 break;
-                case "dashboard":
-                stage.setScene(dashBoardView);
-                stage.setMaximized(true);
+            case "dashboard":
+                stage.close();
+                stageDashBoard.initStyle(DECORATED);
+                stageDashBoard.setScene(dashBoardView);
+                stageDashBoard.setMaximized(true);
+                stageDashBoard.show();
                 break;
         }
     }
+
+
 
     public static void desativarAvisos() {
         stageAvisos.close();

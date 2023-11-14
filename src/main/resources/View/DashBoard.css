@@ -1,15 +1,21 @@
 .background-MenuSlider {
-    -fx-background-color: linear-gradient(to top, #8501E5, #6B279C);
-    -fx-background-radius: 40;
+    -fx-background-color: linear-gradient(to top , #067082 , #09ABC7 , #0AC8E8 ,#0AC1E0 );
+    -fx-background-radius: 30;
+    -fx-border-color: #0BDAFC;
+    -fx-border-radius: 30;
 }
 
 .background-dashboard {
-    -fx-background-color: #14161c;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-color: #8501E5;
+    -fx-background-color: #2C313C;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-border-color: #0BDAFC;
 }
 
 .background {
     -fx-background-color: #14161c;
+}
+
+.background-icones {
+    -fx-background-color: rgba(0,0,0,0);
 }

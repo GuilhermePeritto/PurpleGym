@@ -1,10 +1,12 @@
 package com.example.PurpleGym.Controller;
 
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.springframework.stereotype.Component;
 
@@ -12,41 +14,56 @@ import org.springframework.stereotype.Component;
 public class DashBoardController {
 
     @FXML
-    private AnchorPane menuDashBoard;
+    private VBox menuSlider;
 
-    private TranslateTransition menuSlider;
-    private ScaleTransition menuExpander;
-    private boolean menuExpanded = false;
+    @FXML
+    private Button clientesBtn;
 
+    @FXML
+    private Button perfilBtn;
+
+    @FXML
+    private Button permissaoBtn;
+
+    @FXML
+    private Button produtosBtn;
+
+    private static final double ORIGINAL_WIDTH = 97.0;
+    private static final double EXPANDED_WIDTH = 300.0;
+
+    @FXML
     public void initialize() {
-        menuSlider = new TranslateTransition(Duration.millis(200), menuDashBoard);
-        menuSlider.setByX(-menuDashBoard.getPrefWidth());
-
-        menuExpander = new ScaleTransition(Duration.millis(200), menuDashBoard);
-        menuExpander.setToX(1.0);
-
-        // Comece com a escala inicial (menu recolhido)
-        menuExpander.setFromX(0.0);
-        menuExpander.setToX(1.0);
+        // Adicione ou ajuste outros inicializadores aqui, se necessário
+        menuSlider.setPrefWidth(ORIGINAL_WIDTH);
+        setMouseEvents();
     }
 
-    @FXML
-    public void expandirMenu() {
-        if (!menuExpanded) {
-            menuSlider.play();
-            menuExpander.play();
-            menuExpanded = true;
-        }
+    private void setMouseEvents() {
+        menuSlider.setOnMouseEntered(event -> expandMenuSlider());
+        menuSlider.setOnMouseExited(event -> shrinkMenuSlider());
     }
 
-    @FXML
-    public void recolherMenu() {
-        if (menuExpanded) {
-            menuSlider.setToX(-menuDashBoard.getPrefWidth());
-            menuSlider.play();
-            menuExpander.setToX(1.0);
-            menuExpander.play();
-            menuExpanded = false;
-        }
+    private void expandMenuSlider() {
+        animateWidth(EXPANDED_WIDTH);
+        produtosBtn.setText("Produtos");
+        permissaoBtn.setText("Permissões");
+        perfilBtn.setText("Perfil");
+        clientesBtn.setText("Clientes");
+    }
+
+    private void shrinkMenuSlider() {
+        animateWidth(ORIGINAL_WIDTH);
+        produtosBtn.setText("");
+        permissaoBtn.setText("");
+        perfilBtn.setText("");
+        clientesBtn.setText("");
+    }
+
+    private void animateWidth(double targetWidth) {
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(menuSlider.prefWidthProperty(), targetWidth);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
     }
 }

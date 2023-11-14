@@ -1,18 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="786.0" prefWidth="1220.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" right="10.0" top="5.0" />
          </BorderPane.margin>
-         <children>
-            <AnchorPane fx:id="menuDashBoard" layoutX="7.0" layoutY="11.0" onMouseEntered="#expandirMenu" onMouseExited="#recolherMenu" prefHeight="1080.0" prefWidth="728.0" styleClass="background-MenuSlider" stylesheets="@DashBoard.css" />
-         </children>
       </AnchorPane>
    </center>
+   <left>
+      <VBox fx:id="menuSlider" prefHeight="779.0" prefWidth="97.0" styleClass="background-MenuSlider" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="-25.0" top="5.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+         <children>
+            <Button fx:id="clientesBtn" ellipsisString="" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+               <VBox.margin>
+                  <Insets left="10.0" top="50.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../Image/clientes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="produtosBtn" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css">
+               <VBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../Image/produtos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button disable="true" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" text="Button" visible="false">
+               <VBox.margin>
+                  <Insets left="10.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button disable="true" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" text="Button" visible="false">
+               <VBox.margin>
+                  <Insets left="10.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="permissaoBtn" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css">
+               <VBox.margin>
+                  <Insets left="10.0" top="50.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../Image/permissao.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="perfilBtn" mnemonicParsing="false" prefHeight="83.0" prefWidth="114.0" styleClass="background-icones" stylesheets="@DashBoard.css">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../Image/perfil.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

@@ -6,10 +6,13 @@ import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -74,10 +77,14 @@ public class DashBoardController {
     private Button pesquisarClientesBtn;
 
     @FXML
-    private ListView list;
+    private AnchorPane listCliente;
 
     @FXML
     private Pagination paginacaoCliente;
+
+    private Integer itensPorPagina = 10;// Defina o número de itens por página conforme necessário
+
+    private ObservableList<Node> paginatedItems;
 
     @Autowired
     public ClienteRepository clienteRepository;
@@ -95,6 +102,8 @@ public class DashBoardController {
         setMouseEvents();
 
 
+        paginatedItems = FXCollections.observableArrayList();
+        paginacaoCliente.setPageFactory(this::createPage);
     }
 
     private void setMouseEvents() {
@@ -164,6 +173,8 @@ public class DashBoardController {
     @FXML
     private void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
         List listaClientes = clienteRepository.findAll();
+        paginatedItems.clear();
+
         for (int i = 0; i < listaClientes.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
             BorderPane borderPane = fxmlLoader.load();
@@ -171,18 +182,31 @@ public class DashBoardController {
             ClientesListController clientesListController = fxmlLoader.getController();
             clientesListController.setData((Cliente) listaClientes.get(i));
 
-            list.getItems().add(i,borderPane); //(child,column,row)
-
-            //set grid width
-            list.setMinWidth(Region.USE_COMPUTED_SIZE);
-            list.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            list.setMaxWidth(Region.USE_PREF_SIZE);
-
-            //set grid height
-            list.setMinHeight(Region.USE_COMPUTED_SIZE);
-            list.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            list.setMaxHeight(Region.USE_PREF_SIZE);
+            paginatedItems.add(borderPane);
         }
+
+        int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
+        paginacaoCliente.setPageCount(pageCount);
+        paginacaoCliente.setCurrentPageIndex(0); // Voltar para a primeira página ao pesquisar
+
+        paginacaoCliente.setPageFactory(this::createPage);
+    }
+
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * itensPorPagina;
+        int toIndex = Math.min(fromIndex + itensPorPagina, paginatedItems.size());
+
+        ListView<Node> listView = new ListView<>();
+        listView.setItems(FXCollections.observableArrayList(paginatedItems.subList(fromIndex, toIndex)));
+        listView.setStyle("-fx-background-color: transparent;");
+
+        AnchorPane anchorPane = new AnchorPane(listView);
+        AnchorPane.setTopAnchor(listView, 0.0);
+        AnchorPane.setBottomAnchor(listView, 0.0);
+        AnchorPane.setLeftAnchor(listView, 0.0);
+        AnchorPane.setRightAnchor(listView, 0.0);
+
+        return anchorPane;
     }
 
     private void showPane(AnchorPane pane) {

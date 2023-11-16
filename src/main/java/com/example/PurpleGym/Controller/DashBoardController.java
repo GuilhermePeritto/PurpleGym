@@ -15,10 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +81,9 @@ public class DashBoardController {
 
     @FXML
     private GridPane grid;
+
+    @FXML
+    private AnchorPane scrollPaneList;
 
     @Autowired
     public ClienteRepository clienteRepository;
@@ -172,26 +172,24 @@ public class DashBoardController {
         List listaClientes = clienteRepository.findAll();
         for (int i = 0; i < listaClientes.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
+            BorderPane borderPane = fxmlLoader.load();
 
             ClientesListController clientesListController = fxmlLoader.getController();
             clientesListController.setData((Cliente) listaClientes.get(i));
 
-
-
-            grid.add(anchorPane, 0, i); //(child,column,row)
+            grid.add(borderPane, 0, i); //(child,column,row)
 
             //set grid width
             grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-            grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            grid.setMaxWidth(Region.USE_PREF_SIZE);
+            grid.setPrefWidth(scrollPaneList.getWidth());
+            grid.setMaxWidth(scrollPaneList.getWidth());
 
             //set grid height
             grid.setMinHeight(Region.USE_COMPUTED_SIZE);
             grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
             grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-            GridPane.setMargin(anchorPane, new Insets(10));
+            GridPane.setMargin(borderPane, new Insets(10));
         }
     }
 

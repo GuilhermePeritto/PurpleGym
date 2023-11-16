@@ -66,6 +66,5 @@ public class LoginController {
             LblAviso.setTextFill(RED);
             LblAviso.setText(e.getMessage());
         }
-
     }
 }

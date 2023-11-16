@@ -8,6 +8,7 @@
     -fx-background-color: #1d1e3d;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-border-color: linear-gradient(to right, #1f2a62, #532c89, #cd3bca);
 }
 
 .background {
@@ -61,4 +62,8 @@
 
 .icon {
     -fx-background-color: rgba( 0, 0, 0, 0);
+}
+
+.transparent {
+    -fx-background-color: rgba(0, 0, 0, 0);
 }

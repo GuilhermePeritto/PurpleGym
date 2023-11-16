@@ -13,7 +13,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "idusuario")
-    private Long id;
+    private Long idUsuario;
     @Column(name = "nome", length = 30, nullable = false, unique = false)
     private String nome;
     @Column(name = "E-mail", length = 30, nullable = false, unique = true)
@@ -21,8 +21,8 @@ public class Usuario implements Serializable {
     @Column(name = "senha", length = 30, nullable = false, unique = false)
     private String senha;
 
-    public Usuario(Long id, String nome, String email, String senha) {
-        this.id = id;
+    public Usuario(Long idUsuario, String nome, String email, String senha) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -37,12 +37,12 @@ public class Usuario implements Serializable {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUsuario(Long id) {
+        this.idUsuario = id;
     }
 
     public String getNome() {
@@ -72,7 +72,7 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Usuario{" +
-                "id=" + id +
+                "id=" + idUsuario +
                 ", nome='" + nome + '\'' +
                 ", login='" + email + '\'' +
                 ", senha='" + senha + '\'' +

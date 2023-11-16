@@ -29,6 +29,6 @@
       </Button>
    </left>
    <center>
-      <Label prefHeight="29.0" prefWidth="268.0" text="Label" BorderPane.alignment="CENTER_LEFT" />
+      <Label fx:id="nomeClienteLbl" prefHeight="29.0" prefWidth="268.0" text="Label" BorderPane.alignment="CENTER_LEFT" />
    </center>
 </BorderPane>

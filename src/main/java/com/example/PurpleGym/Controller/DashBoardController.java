@@ -1,5 +1,6 @@
 package com.example.PurpleGym.Controller;
 
+import com.example.PurpleGym.Model.Cliente;
 import com.example.PurpleGym.Repository.ClienteRepository;
 import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.animation.KeyFrame;
@@ -7,18 +8,24 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -74,6 +81,9 @@ public class DashBoardController {
 
     @FXML
     private ListView listaClienteLv;
+
+    @FXML
+    private GridPane grid;
 
     @Autowired
     public ClienteRepository clienteRepository;
@@ -158,10 +168,31 @@ public class DashBoardController {
     }
 
     @FXML
-    private void PesquisarClientesBtnEvent(ActionEvent event) {
+    private void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
         List listaClientes = clienteRepository.findAll();
-        //fazer um for para pegar os nomes e colocar na lista
-        listaClienteLv.getItems().add(listaClientes);
+        for (int i = 0; i < listaClientes.size(); i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+
+            ClientesListController clientesListController = fxmlLoader.getController();
+            clientesListController.setData((Cliente) listaClientes.get(i));
+
+
+
+            grid.add(anchorPane, 0, i); //(child,column,row)
+
+            //set grid width
+            grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+            grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+            //set grid height
+            grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+            grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+            GridPane.setMargin(anchorPane, new Insets(10));
+        }
     }
 
     private void showPane(AnchorPane pane) {

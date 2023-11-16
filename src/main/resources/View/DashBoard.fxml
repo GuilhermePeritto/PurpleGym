@@ -4,13 +4,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -203,11 +204,6 @@
                   <AnchorPane fx:id="dashBoardHome" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="dashBoardListCliente" prefHeight="493.0" prefWidth="691.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ScrollPane fx:id="listaClienteSp" layoutX="4.0" layoutY="149.0" prefHeight="332.0" prefWidth="683.0" styleClass="transparent" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="148.0">
-                           <content>
-                              <ListView fx:id="listaClienteLv" prefHeight="328.0" prefWidth="680.0" />
-                           </content>
-                        </ScrollPane>
                         <HBox layoutX="3.0" layoutY="105.0" prefHeight="45.0" prefWidth="685.0" AnchorPane.bottomAnchor="342.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="104.0">
                            <children>
                               <Button fx:id="pesquisarClientesBtn" mnemonicParsing="false" onAction="#PesquisarClientesBtnEvent" prefHeight="47.0" prefWidth="47.0" styleClass="icon" stylesheets="@DashBoard.css">
@@ -221,6 +217,15 @@
                               </Button>
                            </children>
                         </HBox>
+                        <ScrollPane layoutX="3.0" layoutY="181.0" prefHeight="309.0" prefWidth="685.0" styleClass="transparent" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="180.0">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
                </children>

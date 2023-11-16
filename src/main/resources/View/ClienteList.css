@@ -9,7 +9,7 @@
 
 .background-list {
     -fx-background-color: #15152f;
-    -fx-border-color: linear-gradient(to right, #1f2a62, #532c89, #cd3bca);;
+    -fx-border-color: #1f2a62;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
 }

@@ -67,3 +67,25 @@
 .transparent{
     -fx-background-color: rgba( 0, 0, 0, 0);
 }
+
+.background-listview {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(to left, #1f2a62, #532c89, #cd3bca);
+}
+.list-cell:odd {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 20;
+}
+.list-cell:even {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 20;
+}
+.list-cell:filled:hover {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 20;
+}

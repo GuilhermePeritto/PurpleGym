@@ -77,10 +77,7 @@ public class DashBoardController {
     private Button pesquisarClientesBtn;
 
     @FXML
-    private ListView listaClienteLv;
-
-    @FXML
-    private GridPane grid;
+    private ListView list;
 
     @FXML
     private AnchorPane scrollPaneList;
@@ -177,19 +174,17 @@ public class DashBoardController {
             ClientesListController clientesListController = fxmlLoader.getController();
             clientesListController.setData((Cliente) listaClientes.get(i));
 
-            grid.add(borderPane, 0, i); //(child,column,row)
+            list.getItems().add(i,borderPane); //(child,column,row)
 
             //set grid width
-            grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-            grid.setPrefWidth(scrollPaneList.getWidth());
-            grid.setMaxWidth(scrollPaneList.getWidth());
+            list.setMinWidth(Region.USE_COMPUTED_SIZE);
+            list.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            list.setMaxWidth(Region.USE_PREF_SIZE);
 
             //set grid height
-            grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-            grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-            GridPane.setMargin(borderPane, new Insets(10));
+            list.setMinHeight(Region.USE_COMPUTED_SIZE);
+            list.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            list.setMaxHeight(Region.USE_PREF_SIZE);
         }
     }
 

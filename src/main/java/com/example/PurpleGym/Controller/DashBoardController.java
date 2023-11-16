@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
@@ -80,7 +77,7 @@ public class DashBoardController {
     private ListView list;
 
     @FXML
-    private AnchorPane scrollPaneList;
+    private Pagination paginacaoCliente;
 
     @Autowired
     public ClienteRepository clienteRepository;

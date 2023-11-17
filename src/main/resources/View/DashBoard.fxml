@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@DashBoard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.DashBoardController">
    <left>
       <VBox fx:id="menuSlider" prefHeight="885.0" prefWidth="6.0" styleClass="background-MenuSlider" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -202,17 +202,47 @@
                   <AnchorPane fx:id="dashBoardHome" layoutX="10.0" layoutY="10.0" prefHeight="895.0" prefWidth="1850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="dashBoardListCliente" prefHeight="493.0" prefWidth="691.0" styleClass="background-dashboard" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox layoutX="5.0" layoutY="65.0" prefHeight="45.0" prefWidth="685.0" AnchorPane.bottomAnchor="387.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="65.0">
+                        <HBox fillHeight="false" layoutX="7.0" layoutY="14.0" prefHeight="56.0" prefWidth="682.0" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="14.0">
                            <children>
-                              <Button fx:id="pesquisarClientesBtn" minWidth="38.0" mnemonicParsing="false" onAction="#PesquisarClientesBtnEvent" prefHeight="36.0" prefWidth="61.0" styleClass="icon" stylesheets="@DashBoard.css">
+                              <Button fx:id="adicionarClienteBtn" ellipsisString="" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="54.0" styleClass="background-button-slider" stylesheets="@DashBoard.css" text="Cadastrar Cliente" textFill="WHITE" textOverrun="CLIP">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </HBox.margin>
                                  <graphic>
-                                    <ImageView fitHeight="32.0" fitWidth="32.0">
+                                    <ImageView fitHeight="38.0" fitWidth="38.0">
                                        <image>
-                                          <Image url="@../Image/pesquisar.png" />
+                                          <Image url="@../Image/adicionar.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <HBox prefHeight="47.0" prefWidth="379.0" styleClass="background-barra-pesquisa" stylesheets="@DashBoard.css">
+                                 <children>
+                                    <TextField fx:id="pesquisaClienteTf" prefHeight="46.0" prefWidth="323.0" styleClass="background-searchbar-textfield" stylesheets="@DashBoard.css">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="pesquisarClientesBtn" minWidth="42.0" mnemonicParsing="false" onAction="#PesquisarClientesBtnEvent" prefHeight="47.0" prefWidth="42.0" styleClass="icon" stylesheets="@DashBoard.css">
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="32.0">
+                                             <image>
+                                                <Image url="@../Image/pesquisar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </HBox>
                            </children>
                         </HBox>
                         <HBox layoutX="3.0" layoutY="429.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="61.0" prefWidth="690.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="428.0" />

@@ -19,11 +19,19 @@ public class ClientesListController {
     @FXML
     private Label nomeClienteLbl;
 
+    @FXML
+    private Label emailClienteLbl;
+
+    @FXML
+    private Label telefoneClienteLbl;
+
     private Cliente cliente;
 
     public void setData(Cliente cliente) {
         this.cliente = cliente;
         nomeClienteLbl.setText(cliente.getNome());
+        emailClienteLbl.setText(cliente.getEmail());
+        telefoneClienteLbl.setText(cliente.getTelefone());
     }
 
 }

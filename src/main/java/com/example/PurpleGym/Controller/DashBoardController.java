@@ -11,15 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -74,7 +71,7 @@ public class DashBoardController {
     private AnchorPane dashBoardListCliente;
 
     @FXML
-    private Button pesquisarClientesBtn;
+    private Button adicionarClienteBtn;
 
     @FXML
     private AnchorPane listCliente;
@@ -82,7 +79,10 @@ public class DashBoardController {
     @FXML
     private Pagination paginacaoCliente;
 
-    private Integer itensPorPagina = 10;// Defina o número de itens por página conforme necessário
+    @FXML
+    private TextField pesquisaClienteTf;
+
+    private Integer itensPorPagina = 15;// Defina o número de itens por página conforme necessário
 
     private ObservableList<Node> paginatedItems;
 
@@ -95,12 +95,14 @@ public class DashBoardController {
     private static final double ORIGINAL_WIDTH = 23.0;
     private static final double EXPANDED_WIDTH = 250.0;
 
+    private static final double ORIGINAL_WIDTH_MOUSE = 54;
+    private static final double EXPANDED_WIDTH_MOUSE = 150;
+
     @FXML
     public void initialize() {
         // Adicione ou ajuste outros inicializadores aqui, se necessário
         menuSlider.setPrefWidth(ORIGINAL_WIDTH);
         setMouseEvents();
-
 
         paginatedItems = FXCollections.observableArrayList();
         paginacaoCliente.setPageFactory(this::createPage);
@@ -109,6 +111,29 @@ public class DashBoardController {
     private void setMouseEvents() {
         menuSlider.setOnMouseEntered(event -> expandMenuSlider());
         menuSlider.setOnMouseExited(event -> shrinkMenuSlider());
+
+        setButtonMouseEvents(adicionarClienteBtn);
+    }
+
+    private void setButtonMouseEvents(Button button) {
+        button.setOnMouseEntered(event -> expandirBotaoNovoCliente(button));
+        button.setOnMouseExited(event -> encolherBotaoNovoCliente(button));
+    }
+
+    private void expandirBotaoNovoCliente(Button button) {
+        animateButtonWidth(button, EXPANDED_WIDTH_MOUSE);
+    }
+
+    private void encolherBotaoNovoCliente(Button button) {
+        animateButtonWidth(button, ORIGINAL_WIDTH_MOUSE);
+    }
+
+    private void animateButtonWidth(Button button, double targetWidth) {
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(button.prefWidthProperty(), targetWidth);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
     }
 
     private void expandMenuSlider() {
@@ -166,14 +191,23 @@ public class DashBoardController {
     }
 
     @FXML
-    private void ListaClientesBtnEvent(ActionEvent event) {
+    private void ListaClientesBtnEvent(ActionEvent event) throws IOException {
         this.showPane(dashBoardListCliente);
+        paginacaoCliente.setVisible(false);
+
     }
 
     @FXML
     private void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
-        List listaClientes = clienteRepository.findAll();
+        List<Cliente> listaClientes;
+        if(!pesquisaClienteTf.getText().isEmpty()) {
+            listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());
+        }else {
+            listaClientes = clienteRepository.findAll();
+        }
         paginatedItems.clear();
+        paginacaoCliente.setVisible(true);
+        paginacaoCliente.setCurrentPageIndex(0);
 
         for (int i = 0; i < listaClientes.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
@@ -190,6 +224,14 @@ public class DashBoardController {
         paginacaoCliente.setCurrentPageIndex(0); // Voltar para a primeira página ao pesquisar
 
         paginacaoCliente.setPageFactory(this::createPage);
+    }
+
+    @FXML
+    private void AdicionarClienteBtnEvent(ActionEvent event) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/Cliente.fxml"));
+//        AnchorPane anchorPane = fxmlLoader.load();
+//
+//        dashBoardListCliente.getChildren().setAll(anchorPane);
     }
 
     private Node createPage(int pageIndex) {

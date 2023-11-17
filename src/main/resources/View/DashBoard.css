@@ -89,3 +89,18 @@
     -fx-background-color: #15152f;
     -fx-background-radius: 20;
 }
+
+.background-button-slider {
+    -fx-background-color: #cd3bca;
+    -fx-background-radius: 100;
+}
+
+.background-searchbar-textfield {
+    -fx-border-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: WHITE;
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.background-searchbar-button {
+
+}

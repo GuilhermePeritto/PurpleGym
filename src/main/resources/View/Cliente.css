@@ -1,0 +1,25 @@
+.background{
+    -fx-background-color: #15152f;
+    -fx-border-color: #1f2a62;
+    -fx-border-radius: 0 0 5 5;
+}
+
+.trasparente {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.background-button-voltar {
+    -fx-background-color: #1f2a62;
+    -fx-border-color: #1f2a62;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: #ffffff;
+}
+
+.background-button-salvar {
+    -fx-background-color: #cd3bca;
+    -fx-border-color: #cd3bca;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: #ffffff;
+}

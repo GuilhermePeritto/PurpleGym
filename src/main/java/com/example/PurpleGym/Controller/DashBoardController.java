@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -228,10 +229,8 @@ public class DashBoardController {
 
     @FXML
     private void AdicionarClienteBtnEvent(ActionEvent event) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/Cliente.fxml"));
-//        AnchorPane anchorPane = fxmlLoader.load();
-//
-//        dashBoardListCliente.getChildren().setAll(anchorPane);
+        ClienteController clienteController = new ClienteController();
+        clienteController.start(new Stage());
     }
 
     private Node createPage(int pageIndex) {

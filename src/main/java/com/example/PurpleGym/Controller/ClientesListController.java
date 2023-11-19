@@ -36,7 +36,7 @@ public class ClientesListController {
         this.cliente = cliente;
         nomeClienteLbl.setText(cliente.getNome());
         emailClienteLbl.setText(cliente.getEmail());
-        telefoneClienteLbl.setText(cliente.getTelefone());
+        telefoneClienteLbl.setText(cliente.getWhatsapp());
     }
 
     @FXML

@@ -204,11 +204,13 @@ public class DashBoardController {
         if(!pesquisaClienteTf.getText().isEmpty()) {
             listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());
         }else {
+            paginatedItems.clear();
+            paginacaoCliente.setCurrentPageIndex(0);
             listaClientes = clienteRepository.findAll();
+            paginacaoCliente.setVisible(true);
         }
         paginatedItems.clear();
         paginacaoCliente.setVisible(true);
-        paginacaoCliente.setCurrentPageIndex(0);
 
         for (int i = 0; i < listaClientes.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));

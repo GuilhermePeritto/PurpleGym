@@ -1,5 +1,6 @@
 package com.example.PurpleGym.Controller;
 
+import com.example.PurpleGym.Main;
 import com.example.PurpleGym.Model.Cliente;
 import com.example.PurpleGym.Repository.ClienteRepository;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -24,6 +26,8 @@ import static javafx.stage.StageStyle.*;
 
 @Component
 public class ClienteController {
+
+    private ConfigurableApplicationContext springContext = Main.getContext();
 
     @FXML
     private TextField cepLbl;
@@ -84,6 +88,7 @@ public class ClienteController {
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderCliente = new FXMLLoader(getClass().getClassLoader().getResource("View/Cliente.fxml"));
+        fxmlLoaderCliente.setControllerFactory(springContext::getBean);
         Parent parent = fxmlLoaderCliente.load();
         Scene scene = new Scene(parent);
         stage.setScene(scene);

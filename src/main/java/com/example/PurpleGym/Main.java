@@ -19,7 +19,7 @@ import static javafx.stage.StageStyle.*;
 @SpringBootApplication
 public class Main extends Application {
 
-    public ConfigurableApplicationContext springContext;
+    public static ConfigurableApplicationContext springContext;
     public static Parent rootNode;
 
     public static Stage stage;
@@ -107,7 +107,9 @@ public class Main extends Application {
         }
     }
 
-
+    public static ConfigurableApplicationContext getContext() {
+        return springContext;
+    }
 
     public static void desativarAvisos() {
         stageAvisos.close();

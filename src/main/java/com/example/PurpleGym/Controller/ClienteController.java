@@ -30,40 +30,40 @@ public class ClienteController {
     private ConfigurableApplicationContext springContext = Main.getContext();
 
     @FXML
-    private TextField cepLbl;
+    private TextField cepLbl = new TextField("");
 
     @FXML
-    private ComboBox<String> cidadeCb;
+    private ComboBox<String> cidadeCb = new ComboBox<String>();
 
     @FXML
-    private TextField complementoLbl;
+    private TextField complementoLbl = new TextField("");
 
     @FXML
-    private TextField cpfLbl;
+    private TextField cpfLbl= new TextField("");
 
     @FXML
-    private DatePicker dataNascLbl;
+    private DatePicker dataNascLbl = new DatePicker();
 
     @FXML
-    private TextField emailLbl;
+    private TextField emailLbl= new TextField("");
 
     @FXML
-    private TextField enderecoLbl;
+    private TextField enderecoLbl= new TextField("");
 
     @FXML
-    private TextField nomeLbl;
+    private TextField nomeLbl = new TextField("");
 
     @FXML
-    private TextField numeroLbl;
+    private TextField numeroLbl = new TextField("");
 
     @FXML
-    private TextField outroContatoLbl;
+    private TextField outroContatoLbl = new TextField("");
 
     @FXML
-    private ComboBox<String> ufCb;
+    private ComboBox<String> ufCb = new ComboBox<String>();
 
     @FXML
-    private TextField whatsLbl;
+    private TextField whatsLbl = new TextField("");
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -122,5 +122,20 @@ public class ClienteController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setData(Cliente cliente) {
+        nomeLbl.setText(cliente.getNome());
+        cpfLbl.setText(cliente.getCpf());
+        whatsLbl.setText(cliente.getWhatsapp());
+        outroContatoLbl.setText(cliente.getOutroContato());
+        emailLbl.setText(cliente.getEmail());
+        dataNascLbl.setValue(cliente.getDataNascimento());
+        enderecoLbl.setText(cliente.getEndereco());
+        numeroLbl.setText(cliente.getNumero());
+        complementoLbl.setText(cliente.getComplemento());
+        cepLbl.setText(cliente.getCep());
+        cidadeCb.setValue(cliente.getCidade());
+        ufCb.setValue(cliente.getUf());
     }
 }

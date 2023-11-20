@@ -30,6 +30,30 @@ public class ClientesListController {
     @FXML
     private Label telefoneClienteLbl;
 
+    private Label ufCb;
+
+    private Label cidadeCb;
+
+    private Label cepLbl;
+
+    private Label complementoLbl;
+
+    private Label numeroLbl;
+
+    private Label enderecoLbl;
+
+    private Label emailLbl;
+
+    private Label outroContatoLbl;
+
+    private Label cpfLbl;
+
+    private Label dataNascLbl;
+
+    private Label whatsLbl;
+
+    private Label nomeLbl;
+
     private Cliente cliente;
 
     public void setData(Cliente cliente) {
@@ -49,6 +73,6 @@ public class ClientesListController {
     private void EditarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
         clienteController.start(new Stage());
+        clienteController.setData(cliente);
     }
-
 }

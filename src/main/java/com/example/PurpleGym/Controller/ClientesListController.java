@@ -1,11 +1,13 @@
 package com.example.PurpleGym.Controller;
 
 import com.example.PurpleGym.Model.Cliente;
+import com.example.PurpleGym.Repository.ClienteRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -66,13 +68,20 @@ public class ClientesListController {
     @FXML
     private void InspecionarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage());
+        clienteController.start(new Stage(), cliente);
     }
 
     @FXML
     private void EditarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage());
-        clienteController.setData(cliente);
+        clienteController.start(new Stage(), cliente);
+    }
+
+    @FXML
+    private void ExcluirClienteBtnEvent(ActionEvent event) throws IOException {
+        ClienteController clienteController = new ClienteController();
+        clienteController.start(new Stage(), cliente);
+        clienteController.excluirCliente(cliente);
+        clienteController.fecharTela(event);
     }
 }

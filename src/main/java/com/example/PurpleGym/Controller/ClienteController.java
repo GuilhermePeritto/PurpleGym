@@ -8,21 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import static javafx.stage.StageStyle.*;
 
 @Component
 public class ClienteController {
@@ -30,43 +22,45 @@ public class ClienteController {
     private ConfigurableApplicationContext springContext = Main.getContext();
 
     @FXML
-    private TextField cepLbl = new TextField("");
+    private TextField cepLbl;
 
     @FXML
-    private ComboBox<String> cidadeCb = new ComboBox<String>();
+    private ComboBox<String> cidadeCb;
 
     @FXML
-    private TextField complementoLbl = new TextField("");
+    private TextField complementoLbl;
 
     @FXML
-    private TextField cpfLbl= new TextField("");
+    private TextField cpfLbl;
 
     @FXML
-    private DatePicker dataNascLbl = new DatePicker();
+    private DatePicker dataNascLbl;
 
     @FXML
-    private TextField emailLbl= new TextField("");
+    private TextField emailLbl;
 
     @FXML
-    private TextField enderecoLbl= new TextField("");
+    private TextField enderecoLbl;
 
     @FXML
-    private TextField nomeLbl = new TextField("");
+    private TextField nomeLbl;
 
     @FXML
-    private TextField numeroLbl = new TextField("");
+    private TextField numeroLbl;
 
     @FXML
-    private TextField outroContatoLbl = new TextField("");
+    private TextField outroContatoLbl;
 
     @FXML
-    private ComboBox<String> ufCb = new ComboBox<String>();
+    private ComboBox<String> ufCb;
 
     @FXML
-    private TextField whatsLbl = new TextField("");
+    private TextField whatsLbl;
 
     @Autowired
     ClienteRepository clienteRepository;
+
+    private Cliente cliente;
 
     @FXML
     public void initialize() {
@@ -86,17 +80,24 @@ public class ClienteController {
         );
     }
 
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage, Cliente cliente) throws IOException {
         FXMLLoader fxmlLoaderCliente = new FXMLLoader(getClass().getClassLoader().getResource("View/Cliente.fxml"));
         fxmlLoaderCliente.setControllerFactory(springContext::getBean);
         Parent parent = fxmlLoaderCliente.load();
+
+        // Obtém a instância do controlador
+        ClienteController clienteController = fxmlLoaderCliente.getController();
+
+        // Chama o método alterarCampos com o cliente fornecido
+        clienteController.alterarCampos(cliente);
+
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void cancelar(ActionEvent event) {
+    public void fecharTela(ActionEvent event) {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -118,13 +119,18 @@ public class ClienteController {
                     cidadeCb.getValue().toString(),
                     ufCb.getValue().toString());
             clienteRepository.save(cliente);
-            cancelar(event);
+            fecharTela(event);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setData(Cliente cliente) {
+    @FXML
+    public void alterarCampos(Cliente cliente) {
+
+        if(cliente == null) {
+            return;
+        }
         nomeLbl.setText(cliente.getNome());
         cpfLbl.setText(cliente.getCpf());
         whatsLbl.setText(cliente.getWhatsapp());
@@ -135,7 +141,17 @@ public class ClienteController {
         numeroLbl.setText(cliente.getNumero());
         complementoLbl.setText(cliente.getComplemento());
         cepLbl.setText(cliente.getCep());
+        // Define os valores nos ComboBoxes
         cidadeCb.setValue(cliente.getCidade());
         ufCb.setValue(cliente.getUf());
     }
+
+    public void excluirCliente(Cliente cliente) {
+        try {
+            clienteRepository.deleteById(cliente.getIdCliente());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

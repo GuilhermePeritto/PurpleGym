@@ -198,6 +198,10 @@ public class DashBoardController {
 
     }
 
+    public void excluirCliente(Cliente cliente) {
+        clienteRepository.deleteById(cliente.getIdCliente());
+    }
+
     @FXML
     private void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
         List<Cliente> listaClientes;
@@ -232,7 +236,7 @@ public class DashBoardController {
     @FXML
     private void AdicionarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage());
+        clienteController.start(new Stage(), null);
     }
 
     private Node createPage(int pageIndex) {

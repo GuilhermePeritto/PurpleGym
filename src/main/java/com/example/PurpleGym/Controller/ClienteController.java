@@ -60,7 +60,7 @@ public class ClienteController {
     @Autowired
     ClienteRepository clienteRepository;
 
-    private Cliente cliente;
+    public static Cliente cliente;
 
     @FXML
     public void initialize() {
@@ -80,7 +80,7 @@ public class ClienteController {
         );
     }
 
-    public void start(Stage stage, Cliente cliente) throws IOException {
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoaderCliente = new FXMLLoader(getClass().getClassLoader().getResource("View/Cliente.fxml"));
         fxmlLoaderCliente.setControllerFactory(springContext::getBean);
         Parent parent = fxmlLoaderCliente.load();
@@ -95,6 +95,9 @@ public class ClienteController {
         stage.setScene(scene);
         stage.show();
     }
+    public void setData(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     @FXML
     public void fecharTela(ActionEvent event) {
@@ -105,20 +108,20 @@ public class ClienteController {
     @FXML
     public void salvar(ActionEvent event) {
         try {
-            Cliente cliente = new Cliente(null,
-                    nomeLbl.getText(),
-                    cpfLbl.getText(),
-                    whatsLbl.getText(),
-                    outroContatoLbl.getText(),
-                    emailLbl.getText(),
-                    dataNascLbl.getValue(),
-                    enderecoLbl.getText(),
-                    numeroLbl.getText(),
-                    complementoLbl.getText(),
-                    cepLbl.getText(),
-                    cidadeCb.getValue().toString(),
-                    ufCb.getValue().toString());
+            cliente.setNome(nomeLbl.getText());
+            cliente.setCpf(cpfLbl.getText());
+            cliente.setWhatsapp(whatsLbl.getText());
+            cliente.setOutroContato(outroContatoLbl.getText());
+            cliente.setEmail(emailLbl.getText());
+            cliente.setDataNascimento(dataNascLbl.getValue());
+            cliente.setEndereco(enderecoLbl.getText());
+            cliente.setNumero(numeroLbl.getText());
+            cliente.setComplemento(complementoLbl.getText());
+            cliente.setCep(cepLbl.getText());
+            cliente.setCidade(cidadeCb.getValue());
+            cliente.setUf(ufCb.getValue());
             clienteRepository.save(cliente);
+            cliente = new Cliente(); //nao remover pelo amor de deus, se tirar isso, o cliente vai ser criado com o nome do ultimo cliente selecionado
             fecharTela(event);
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,12 +149,12 @@ public class ClienteController {
         ufCb.setValue(cliente.getUf());
     }
 
-    public void excluirCliente(Cliente cliente) {
+    public void excluiCliente() {
         try {
-            clienteRepository.deleteById(cliente.getIdCliente());
+        springContext.getBean(ClienteRepository.class).deleteById(cliente.getIdCliente());
+        cliente = new Cliente();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.PurpleGym.Controller;
 
+import com.example.PurpleGym.Main;
 import com.example.PurpleGym.Model.Cliente;
 import com.example.PurpleGym.Repository.ClienteRepository;
 import com.example.PurpleGym.Repository.UsuarioRepository;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -236,7 +238,7 @@ public class DashBoardController {
     @FXML
     private void AdicionarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage(), null);
+        clienteController.start(new Stage());
     }
 
     private Node createPage(int pageIndex) {

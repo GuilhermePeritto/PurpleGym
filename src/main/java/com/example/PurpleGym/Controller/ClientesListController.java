@@ -68,20 +68,21 @@ public class ClientesListController {
     @FXML
     private void InspecionarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage(), cliente);
+        clienteController.setData(cliente);
+        clienteController.start(new Stage());
     }
 
     @FXML
     private void EditarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage(), cliente);
+        clienteController.setData(cliente);
+        clienteController.start(new Stage());
     }
 
     @FXML
-    private void ExcluirClienteBtnEvent(ActionEvent event) throws IOException {
+    private void ExcluirClienteBtnEvent(ActionEvent event) {
         ClienteController clienteController = new ClienteController();
-        clienteController.start(new Stage(), cliente);
-        clienteController.excluirCliente(cliente);
-        clienteController.fecharTela(event);
+        clienteController.setData(cliente);
+        clienteController.excluiCliente();
     }
 }

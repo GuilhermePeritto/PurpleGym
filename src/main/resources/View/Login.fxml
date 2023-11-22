@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.LoginController">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="337.0" BorderPane.alignment="CENTER">
          <children>
@@ -34,7 +34,7 @@
    <center>
       <AnchorPane prefHeight="434.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="lblusuario" layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu usuário" styleClass="textfield-custom" stylesheets="@Login.css" />
+            <TextField fx:id="lblemail" layoutX="92.0" layoutY="216.0" prefHeight="37.0" prefWidth="328.0" promptText="Insira o seu e-mail" styleClass="textfield-custom" stylesheets="@Login.css" />
             <PasswordField fx:id="lblsenha" layoutX="90.0" layoutY="293.0" prefHeight="37.0" prefWidth="329.0" promptText="Insira sua senha" styleClass="textfield-custom" stylesheets="@Login.css">
                <opaqueInsets>
                   <Insets />

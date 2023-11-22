@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static javafx.scene.paint.Color.GREEN;
 import static javafx.scene.paint.Color.RED;
 
 @Component
@@ -22,7 +21,10 @@ public class LoginController {
 
     @Autowired
     public UsuarioRepository usuarioRepository;
-    public TextField lblusuario;
+
+    @FXML
+    public TextField lblemail;
+    @FXML
     public PasswordField lblsenha;
 
     @FXML
@@ -53,8 +55,12 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        //usuarioRepository.exists(new Usuario(lblusuario.getText(), lblsenha.getText()));
-        LblAviso.setText("Deu voce entrou!");
+        Usuario usuario = usuarioRepository.findByEmailAndSenha(lblemail.getText(), lblsenha.getText());
+        if(usuario == null) {
+            LblAviso.setTextFill(RED);
+            LblAviso.setText("Usuario ou senha incorretos!");
+            return;
+        }
         Main.trocarTela("dashboard");
     }
 

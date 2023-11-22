@@ -107,6 +107,7 @@ public class ClienteController {
 
     @FXML
     public void salvar(ActionEvent event) {
+        AvisoController avisoController = new AvisoController();
         try {
             cliente.setNome(nomeLbl.getText());
             cliente.setCpf(cpfLbl.getText());
@@ -123,6 +124,7 @@ public class ClienteController {
             clienteRepository.save(cliente);
             cliente = new Cliente(); //nao remover pelo amor de deus, se tirar isso, o cliente vai ser criado com o nome do ultimo cliente selecionado
             fecharTela(event);
+            avisoController.showAlerta(new Stage(), "Cliente salvo com sucesso!", false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,9 +152,18 @@ public class ClienteController {
     }
 
     public void excluiCliente() {
+        AvisoConfirmacaoController avisoConfirmacaoController = new AvisoConfirmacaoController();
         try {
-        springContext.getBean(ClienteRepository.class).deleteById(cliente.getIdCliente());
-        cliente = new Cliente();
+            AvisoConfirmacaoController.ConfirmacaoCallback callback = resultado -> {
+                if (resultado) {
+                    springContext.getBean(ClienteRepository.class).deleteById(cliente.getIdCliente());
+                    AvisoController avisoController = new AvisoController();
+                    avisoController.showAlerta(new Stage(), "Cliente excluído com sucesso!", false);
+                    cliente = new Cliente();
+                }
+            };
+
+            avisoConfirmacaoController.showAlertaConfirmacao(new Stage(), "Você tem certeza que deseja excluir este cliente?", callback);
         } catch (Exception e) {
             e.printStackTrace();
         }

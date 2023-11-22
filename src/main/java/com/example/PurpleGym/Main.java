@@ -59,7 +59,7 @@ public class Main extends Application {
         registrarView = new Scene(fxmlRegistrarView, 975, 501);
 
 
-        FXMLLoader fxmlLoaderAvisos = new FXMLLoader(getClass().getClassLoader().getResource("View/AvisoSucesso.fxml"));
+        FXMLLoader fxmlLoaderAvisos = new FXMLLoader(getClass().getClassLoader().getResource("View/Aviso.fxml"));
         fxmlLoaderAvisos.setControllerFactory(springContext::getBean);
         Parent fxmlAvisosView = fxmlLoaderAvisos.load();
         avisosView = new Scene(fxmlAvisosView, 415, 400);

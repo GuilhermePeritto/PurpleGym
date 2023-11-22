@@ -48,8 +48,6 @@ public class RegistrarController {
     @FXML
     public PasswordField lblSenha;
 
-
-
     @FXML
     void minimizar(ActionEvent event) {
         Stage stage = (Stage) BtnMinimizar.getScene().getWindow();
@@ -58,7 +56,7 @@ public class RegistrarController {
 
     @FXML
     void finalizarRegistro() throws Exception {
-        AvisosController avisosController = new AvisosController();
+        AvisoController avisoController = new AvisoController();
         try {
             if (lblNome.getText().isEmpty()) {
                 new Exception("Você não preencheu o campo Nome Completo, favor tentar novamente!");
@@ -67,15 +65,18 @@ public class RegistrarController {
             } else if (lblSenha.getText().isEmpty()) {
                 new Exception("Você não preencheu o campo Senha, favor tentar novamente!");
             } else {
-                usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
-                avisosController.AlertaSucesso();
+                try {
+                    usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
+                    avisoController.showAlerta(new Stage(), "Cadastro realizado com sucesso!", false);
+                } catch (Exception e) {
+                    avisoController.showAlerta(new Stage(), e.getLocalizedMessage(), true);
+                }
                 lblEmail.setText("");
                 lblNome.setText("");
                 lblSenha.setText("");
             }
         } catch (Exception e) {
-            Main.trocarTela("avisos");
-            avisosController.AlertaFalha(e.getMessage());
+            avisoController.showAlerta(new Stage(),e.getMessage(), true);
         }
 
     }

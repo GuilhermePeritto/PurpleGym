@@ -2,18 +2,15 @@
     -fx-background-color: TRANSPARENT;
 }
 
-.background-baixo {
-    -fx-background-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
-    -fx-background-radius:0 0 50 50;
-    -fx-border-color: #14161c;
-    -fx-border-radius: 0 0 50 50;
+
+.background-cima {
+    -fx-background-color: #15152f;
+    -fx-border-color: #15152f, #8501E5, #8501E5, #15152f;
 }
 
-.background-custom {
-    -fx-background-color: #14161c;
-    -fx-background-radius: 30;
-    -fx-border-color: #8501E5;
-    -fx-border-radius: 30;
+.background-baixo {
+    -fx-background-color: #15152f;
+    -fx-border-color: radial-gradient(center 50% 50%, radius 100%, #cd3bca, #532c89 ,#1f2a62);
 }
 
 .background-circulo {

@@ -200,12 +200,32 @@ public class DashBoardController {
 
     }
 
-    public void excluirCliente(Cliente cliente) {
-        clienteRepository.deleteById(cliente.getIdCliente());
+    public void AtualizarLista() throws IOException {
+        List<Cliente> listaClientes;
+            paginatedItems.clear();
+            paginacaoCliente.setCurrentPageIndex(0);
+            listaClientes = clienteRepository.findAll();
+            paginacaoCliente.setVisible(true);
+
+        for (int i = 0; i < listaClientes.size(); i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
+            BorderPane borderPane = fxmlLoader.load();
+
+            ClientesListController clientesListController = fxmlLoader.getController();
+            clientesListController.setData((Cliente) listaClientes.get(i));
+
+            paginatedItems.add(borderPane);
+        }
+
+        int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
+        paginacaoCliente.setPageCount(pageCount);
+        paginacaoCliente.setCurrentPageIndex(0); // Voltar para a primeira página ao pesquisar
+
+        paginacaoCliente.setPageFactory(this::createPage);
     }
 
     @FXML
-    private void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
+    public void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
         List<Cliente> listaClientes;
         if(!pesquisaClienteTf.getText().isEmpty()) {
             listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());

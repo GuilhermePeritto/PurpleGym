@@ -80,8 +80,9 @@ public class ClientesListController {
     }
 
     @FXML
-    private void ExcluirClienteBtnEvent(ActionEvent event) {
+    private void ExcluirClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
+        DashBoardController dashBoardController = new DashBoardController();
         clienteController.setData(cliente);
         clienteController.excluiCliente();
     }

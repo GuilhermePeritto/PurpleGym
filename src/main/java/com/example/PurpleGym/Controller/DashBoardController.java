@@ -7,6 +7,7 @@ import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -200,59 +201,66 @@ public class DashBoardController {
 
     }
 
-    public void AtualizarLista() throws IOException {
-        List<Cliente> listaClientes;
-            paginatedItems.clear();
-            paginacaoCliente.setCurrentPageIndex(0);
-            listaClientes = clienteRepository.findAll();
-            paginacaoCliente.setVisible(true);
-
-        for (int i = 0; i < listaClientes.size(); i++) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
-            BorderPane borderPane = fxmlLoader.load();
-
-            ClientesListController clientesListController = fxmlLoader.getController();
-            clientesListController.setData((Cliente) listaClientes.get(i));
-
-            paginatedItems.add(borderPane);
-        }
-
-        int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
-        paginacaoCliente.setPageCount(pageCount);
-        paginacaoCliente.setCurrentPageIndex(0); // Voltar para a primeira página ao pesquisar
-
-        paginacaoCliente.setPageFactory(this::createPage);
-    }
-
     @FXML
     public void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
-        List<Cliente> listaClientes;
-        if(!pesquisaClienteTf.getText().isEmpty()) {
-            listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());
-        }else {
-            paginatedItems.clear();
-            paginacaoCliente.setCurrentPageIndex(0);
-            listaClientes = clienteRepository.findAll();
-            paginacaoCliente.setVisible(true);
-        }
-        paginatedItems.clear();
-        paginacaoCliente.setVisible(true);
+        LoadingController loadingController = new LoadingController();
+        Stage loadingStage = new Stage();
 
-        for (int i = 0; i < listaClientes.size(); i++) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
-            BorderPane borderPane = fxmlLoader.load();
+        // Inicia o loading
+        loadingController.iniciaLoading(loadingStage);
 
-            ClientesListController clientesListController = fxmlLoader.getController();
-            clientesListController.setData((Cliente) listaClientes.get(i));
+        // Cria uma thread para realizar a consulta em segundo plano
+        Thread consultaThread = new Thread(() -> {
+            List<Cliente> listaClientes;
+            if(!pesquisaClienteTf.getText().isEmpty()) {
+                listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());
+            } else {
+                listaClientes = clienteRepository.findAll();
+            }
 
-            paginatedItems.add(borderPane);
-        }
+            // Atualiza a UI na thread principal após a consulta
+            Platform.runLater(() -> {
+                try {
+                    // Preenche a lista paginada
+                    paginatedItems.clear();
+                    for (int i = 0; i < listaClientes.size(); i++) {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
+                        BorderPane borderPane = fxmlLoader.load();
 
-        int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
-        paginacaoCliente.setPageCount(pageCount);
-        paginacaoCliente.setCurrentPageIndex(0); // Voltar para a primeira página ao pesquisar
+                        ClientesListController clientesListController = fxmlLoader.getController();
+                        clientesListController.setData((Cliente) listaClientes.get(i));
 
-        paginacaoCliente.setPageFactory(this::createPage);
+                        paginatedItems.add(borderPane);
+                    }
+
+                    int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
+                    paginacaoCliente.setPageCount(pageCount);
+                    paginacaoCliente.setCurrentPageIndex(0);
+                    paginacaoCliente.setPageFactory(this::createPage);
+
+                    // Mostra a paginação
+                    paginacaoCliente.setVisible(true);
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    // Fecha o loading após a consulta
+                    loadingController.fecharLoading(loadingStage);
+                    trocarPaginas(paginacaoCliente);
+                }
+            });
+        });
+
+        // Inicia a thread de consulta
+        consultaThread.start();
+    }
+
+    private void trocarPaginas(Pagination paginacaoCliente) {
+        paginacaoCliente.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            paginacaoCliente.setCurrentPageIndex(newIndex.intValue());
+        });
+
     }
 
     @FXML

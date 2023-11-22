@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -38,18 +39,18 @@
                   <Font name="System Bold" size="9.0" />
                </font>
             </Text>
-            <Button fx:id="btnFinalizarRegistro" layoutX="156.0" layoutY="343.0" mnemonicParsing="false" onAction="#finalizarRegistro" prefHeight="37.0" prefWidth="327.0" styleClass="button-Registrar" stylesheets="@Registrar.css" text="Registrar" />
+            <Button fx:id="btnFinalizarRegistro" layoutX="156.0" layoutY="360.0" mnemonicParsing="false" onAction="#finalizarRegistro" prefHeight="37.0" prefWidth="327.0" styleClass="button-Registrar" stylesheets="@Registrar.css" text="Registrar" />
             <Text fill="WHITE" layoutX="155.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crie sua conta!" wrappingWidth="189.3935546875">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="157.0" layoutY="395.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="Já possui conta?">
+            <Text fill="WHITE" layoutX="157.0" layoutY="412.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="Já possui conta?">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
             </Text>
-            <Button fx:id="BtnVoltarTelaEntrar" layoutX="232.0" layoutY="381.0" mnemonicParsing="false" onAction="#voltarTelaEntrar" prefHeight="4.0" prefWidth="44.0" styleClass="background-custom" stylesheets="@Registrar.css" text="Entrar" textFill="WHITE">
+            <Button fx:id="BtnVoltarTelaEntrar" layoutX="232.0" layoutY="398.0" mnemonicParsing="false" onAction="#voltarTelaEntrar" prefHeight="4.0" prefWidth="44.0" styleClass="background-custom" stylesheets="@Registrar.css" text="Entrar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
@@ -83,6 +84,11 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label fx:id="lblAviso" layoutX="158.0" layoutY="330.0" prefHeight="19.0" prefWidth="322.0" textFill="RED">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

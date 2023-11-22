@@ -29,6 +29,7 @@ public class Main extends Application {
     public static Scene dashBoardView;
     static Stage stageAvisos = new Stage();
     static Stage stageDashBoard = new Stage();
+    public static FXMLLoader fxmlLoaderLogin;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -37,21 +38,14 @@ public class Main extends Application {
     @Override
     public void init() throws Exception {
         springContext = SpringApplication.run(Main.class);
-        URL fxmlLocation = getClass().getClassLoader().getResource("View/Login.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        fxmlLoader.setControllerFactory(springContext::getBean);
-        rootNode = fxmlLoader.load();
+        fxmlLoaderLogin = new FXMLLoader(getClass().getClassLoader().getResource("View/Login.fxml"));
+        fxmlLoaderLogin.setControllerFactory(springContext::getBean);
+        rootNode = fxmlLoaderLogin.load();
     }
 
     @Override
     public void start(Stage startStage) throws Exception {
         stage = startStage;
-
-        FXMLLoader fxmlLoaderLogin = new FXMLLoader(getClass().getClassLoader().getResource("View/Login.fxml"));
-        fxmlLoaderLogin.setControllerFactory(springContext::getBean);//passa o contexto para o banco de dados
-        Parent fxmlLoginView = fxmlLoaderLogin.load();
-        loginView = new Scene(fxmlLoginView, 975, 501);
-
 
         FXMLLoader fxmlLoaderRegistrar = new FXMLLoader(getClass().getClassLoader().getResource("View/Registrar.fxml"));
         fxmlLoaderRegistrar.setControllerFactory(springContext::getBean);
@@ -73,7 +67,6 @@ public class Main extends Application {
         dashBoardView.setFill(Color.TRANSPARENT);
         startStage.setTitle("PurpleGym");
 
-
         startStage.setScene(new Scene(rootNode, 975, 501));
         startStage.initStyle(UNDECORATED);
         startStage.show();
@@ -87,7 +80,7 @@ public class Main extends Application {
     public static void trocarTela(String tela) {
         switch (tela) {
             case "login":
-                stage.setScene(loginView);
+                stage.setScene(rootNode.getScene());
                 break;
             case "registrar":
                 stage.setScene(registrarView);
@@ -111,7 +104,4 @@ public class Main extends Application {
         return springContext;
     }
 
-    public static void desativarAvisos() {
-        stageAvisos.close();
-    }
 }

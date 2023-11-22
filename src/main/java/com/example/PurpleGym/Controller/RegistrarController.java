@@ -6,10 +6,12 @@ import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +19,9 @@ public class RegistrarController {
 
     @Autowired
     public UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @FXML
     private Button BtnFechar;
@@ -40,6 +45,9 @@ public class RegistrarController {
     private Button btnLoginGoogle;
 
     @FXML
+    private Label lblAviso;
+
+    @FXML
     public TextField lblEmail;
 
     @FXML
@@ -59,17 +67,18 @@ public class RegistrarController {
         AvisoController avisoController = new AvisoController();
         try {
             if (lblNome.getText().isEmpty()) {
-                new Exception("Você não preencheu o campo Nome Completo, favor tentar novamente!");
+                lblAviso.setText("Você não preencheu o campo Nome Completo, favor tentar novamente!");
             } else if (lblEmail.getText().isEmpty()) {
-                new Exception("Você não preencheu o campo E-mail, favor tentar novamente!");
+                lblAviso.setText("Você não preencheu o campo E-mail, favor tentar novamente!");
             } else if (lblSenha.getText().isEmpty()) {
-                new Exception("Você não preencheu o campo Senha, favor tentar novamente!");
+                lblAviso.setText("Você não preencheu o campo Senha, favor tentar novamente!");
             } else {
                 try {
-                    usuarioRepository.save(new Usuario(null,lblNome.getText(), lblEmail.getText(), lblSenha.getText()));
-                    avisoController.showAlerta(new Stage(), "Cadastro realizado com sucesso!", false);
+                    Usuario novoUsuario = new Usuario(null, lblNome.getText(), lblEmail.getText(), passwordEncoder.encode(lblSenha.getText()));
+                    usuarioRepository.save(novoUsuario);
+                    avisoController.showAlerta(new Stage(), "Cadastro realizado com sucesso!", true);
                 } catch (Exception e) {
-                    avisoController.showAlerta(new Stage(), e.getLocalizedMessage(), true);
+                    avisoController.showAlerta(new Stage(), e.getLocalizedMessage(), false);
                 }
                 lblEmail.setText("");
                 lblNome.setText("");

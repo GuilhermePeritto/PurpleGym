@@ -1,0 +1,9 @@
+.background-custom {
+    -fx-background-color: #15152f;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15px;
+}
+
+.button-invisivel {
+    -fx-background-color: rgba(0,0,0,0);
+}

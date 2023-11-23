@@ -2,7 +2,9 @@ package com.example.PurpleGym.Controller;
 
 import com.example.PurpleGym.Main;
 import com.example.PurpleGym.Model.Cliente;
+import com.example.PurpleGym.Model.Produto;
 import com.example.PurpleGym.Repository.ClienteRepository;
+import com.example.PurpleGym.Repository.ProdutoRepository;
 import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -23,7 +25,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -66,6 +67,9 @@ public class DashBoardController {
     private AnchorPane dashBoardProdutos;
 
     @FXML
+    private AnchorPane dashBoardListProdutos;
+
+    @FXML
     private AnchorPane dashBoardHome;
 
     @FXML
@@ -84,7 +88,13 @@ public class DashBoardController {
     private Button adicionarClienteBtn;
 
     @FXML
+    private Button adicionarProdutoBtn;
+
+    @FXML
     private AnchorPane listCliente;
+
+    @FXML
+    private TextField pesquisaProdutoTf;
 
     @FXML
     private Pagination paginacaoCliente;
@@ -94,7 +104,12 @@ public class DashBoardController {
 
     private Integer itensPorPagina = 15;// Defina o número de itens por página conforme necessário
 
-    private ObservableList<Node> paginatedItems;
+    private ObservableList<Node> paginatedClientes;
+
+    private ObservableList<Node> paginatedProdutos;
+
+    @FXML
+    private Pagination paginacaoProduto;
 
     @Autowired
     public ClienteRepository clienteRepository;
@@ -102,13 +117,16 @@ public class DashBoardController {
     @Autowired
     public UsuarioRepository usuarioRepository;
 
+    @Autowired
+    public ProdutoRepository produtoRepository;
+
     public static Scene dashBoardView;
 
     private static final double ORIGINAL_WIDTH = 23.0;
     private static final double EXPANDED_WIDTH = 250.0;
 
     private static final double ORIGINAL_WIDTH_MOUSE = 54;
-    private static final double EXPANDED_WIDTH_MOUSE = 150;
+    private static final double EXPANDED_WIDTH_MOUSE = 155;
 
     @FXML
     public void initialize() {
@@ -116,8 +134,11 @@ public class DashBoardController {
         menuSlider.setPrefWidth(ORIGINAL_WIDTH);
         setMouseEvents();
 
-        paginatedItems = FXCollections.observableArrayList();
+        paginatedClientes = FXCollections.observableArrayList();
         paginacaoCliente.setPageFactory(this::createPage);
+        paginatedProdutos = FXCollections.observableArrayList();
+        paginacaoProduto.setPageFactory(this::createPage);
+
     }
 
     private void setMouseEvents() {
@@ -125,18 +146,19 @@ public class DashBoardController {
         menuSlider.setOnMouseExited(event -> shrinkMenuSlider());
 
         setButtonMouseEvents(adicionarClienteBtn);
+        setButtonMouseEvents(adicionarProdutoBtn);
     }
 
     private void setButtonMouseEvents(Button button) {
-        button.setOnMouseEntered(event -> expandirBotaoNovoCliente(button));
-        button.setOnMouseExited(event -> encolherBotaoNovoCliente(button));
+        button.setOnMouseEntered(event -> expandirBotaoCadastro(button));
+        button.setOnMouseExited(event -> encolherBotaoCadastro(button));
     }
 
-    private void expandirBotaoNovoCliente(Button button) {
+    private void expandirBotaoCadastro(Button button) {
         animateButtonWidth(button, EXPANDED_WIDTH_MOUSE);
     }
 
-    private void encolherBotaoNovoCliente(Button button) {
+    private void encolherBotaoCadastro(Button button) {
         animateButtonWidth(button, ORIGINAL_WIDTH_MOUSE);
     }
 
@@ -167,6 +189,7 @@ public class DashBoardController {
         homeBtn.setText("");
         logoutBtn.setText("");
     }
+
     @FXML
     private void ClientesBtnEvent(ActionEvent event) {
         this.showPane(dashBoardClientes);
@@ -214,6 +237,75 @@ public class DashBoardController {
     }
 
     @FXML
+    private void ListaProdutosBtnEvent(ActionEvent event) throws IOException {
+        this.showPane(dashBoardListProdutos);
+        paginacaoCliente.setVisible(false);
+
+    }
+
+    @FXML
+    private void AdicionarProdutoBtnEvent(ActionEvent event) throws IOException {
+//        ProdutoController produtoController = new ProdutoController();
+//        produtoController.start(new Stage());
+    }
+
+    @FXML
+    public void PesquisarProdutosBtnEvent(ActionEvent event) throws IOException {
+        LoadingController loadingController = new LoadingController();
+        Stage loadingStage = new Stage();
+
+        // Inicia o loading
+        loadingController.iniciaLoading(loadingStage);
+
+        // Cria uma thread para realizar a consulta em segundo plano
+        Thread consultaThread = new Thread(() -> {
+            List<Produto> listaProdutos;
+            if (!pesquisaProdutoTf.getText().isEmpty()) {
+                listaProdutos = produtoRepository.findByNomeContainingIgnoreCaseOrderByNomeAsc(pesquisaProdutoTf.getText());
+            } else {
+                listaProdutos = produtoRepository.findAllByOrderByNomeAsc();
+            }
+
+            // Atualiza a UI na thread principal após a consulta
+            Platform.runLater(() -> {
+                try {
+                    // Preenche a lista paginada
+                    paginatedProdutos.clear();
+                    for (int i = 0; i < listaProdutos.size(); i++) {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ProdutoList.fxml"));
+                        BorderPane borderPane = fxmlLoader.load();
+
+                        ProdutoListController produtoListController = fxmlLoader.getController();
+                        produtoListController.setData((Produto) listaProdutos.get(i));
+
+                        paginatedProdutos.add(borderPane);
+                    }
+
+                    int pageCount = (int) Math.ceil((double) paginatedProdutos.size() / itensPorPagina);
+                    paginacaoProduto.setPageCount(pageCount);
+                    paginacaoProduto.setCurrentPageIndex(0);
+                    paginacaoProduto.setPageFactory(this::createPage);
+
+                    // Mostra a paginação
+                    paginacaoProduto.setVisible(true);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    // Fecha o loading após a consulta
+                    loadingController.fecharLoading(loadingStage);
+                    trocarPaginas(paginacaoProduto);
+                }
+            });
+        });
+
+        // Inicia a thread de consulta
+        consultaThread.start();
+    }
+
+
+
+    @FXML
     public void PesquisarClientesBtnEvent(ActionEvent event) throws IOException {
         LoadingController loadingController = new LoadingController();
         Stage loadingStage = new Stage();
@@ -224,7 +316,7 @@ public class DashBoardController {
         // Cria uma thread para realizar a consulta em segundo plano
         Thread consultaThread = new Thread(() -> {
             List<Cliente> listaClientes;
-            if(!pesquisaClienteTf.getText().isEmpty()) {
+            if (!pesquisaClienteTf.getText().isEmpty()) {
                 listaClientes = clienteRepository.findByNomeContainingIgnoreCaseOrderByNomeAsc(pesquisaClienteTf.getText());
             } else {
                 listaClientes = clienteRepository.findAllByOrderByNomeAsc();
@@ -234,7 +326,7 @@ public class DashBoardController {
             Platform.runLater(() -> {
                 try {
                     // Preenche a lista paginada
-                    paginatedItems.clear();
+                    paginatedClientes.clear();
                     for (int i = 0; i < listaClientes.size(); i++) {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/ClienteList.fxml"));
                         BorderPane borderPane = fxmlLoader.load();
@@ -242,10 +334,10 @@ public class DashBoardController {
                         ClientesListController clientesListController = fxmlLoader.getController();
                         clientesListController.setData((Cliente) listaClientes.get(i));
 
-                        paginatedItems.add(borderPane);
+                        paginatedClientes.add(borderPane);
                     }
 
-                    int pageCount = (int) Math.ceil((double) paginatedItems.size() / itensPorPagina);
+                    int pageCount = (int) Math.ceil((double) paginatedClientes.size() / itensPorPagina);
                     paginacaoCliente.setPageCount(pageCount);
                     paginacaoCliente.setCurrentPageIndex(0);
                     paginacaoCliente.setPageFactory(this::createPage);
@@ -283,10 +375,10 @@ public class DashBoardController {
 
     private Node createPage(int pageIndex) {
         int fromIndex = pageIndex * itensPorPagina;
-        int toIndex = Math.min(fromIndex + itensPorPagina, paginatedItems.size());
+        int toIndex = Math.min(fromIndex + itensPorPagina, paginatedClientes.size());
 
         ListView<Node> listView = new ListView<>();
-        listView.setItems(FXCollections.observableArrayList(paginatedItems.subList(fromIndex, toIndex)));
+        listView.setItems(FXCollections.observableArrayList(paginatedClientes.subList(fromIndex, toIndex)));
         listView.setStyle("-fx-background-color: transparent;");
 
         AnchorPane anchorPane = new AnchorPane(listView);
@@ -305,6 +397,7 @@ public class DashBoardController {
         dashBoardHome.setVisible(pane == dashBoardHome);
         dashBoardPerfil.setVisible(pane == dashBoardPerfil);
         dashBoardListCliente.setVisible(pane == dashBoardListCliente);
+        dashBoardListProdutos.setVisible(pane == dashBoardListProdutos);
     }
 
 

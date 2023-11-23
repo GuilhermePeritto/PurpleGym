@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </Text>
-            <Button fx:id="BtnVoltarTelaEntrar" layoutX="232.0" layoutY="398.0" mnemonicParsing="false" onAction="#voltarTelaEntrar" prefHeight="4.0" prefWidth="44.0" styleClass="background-custom" stylesheets="@Registrar.css" text="Entrar" textFill="WHITE">
+            <Button fx:id="BtnVoltarTelaEntrar" layoutX="232.0" layoutY="398.0" mnemonicParsing="false" onAction="#voltarTelaEntrar" prefHeight="4.0" prefWidth="44.0" styleClass="button-invisivel" stylesheets="@Registrar.css" text="Entrar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>

@@ -21,13 +21,7 @@ public class Main extends Application {
 
     public static ConfigurableApplicationContext springContext;
     public static Parent rootNode;
-
     public static Stage stage;
-    public static Scene loginView;
-    public static Scene avisosView;
-    public static Scene dashBoardView;
-    static Stage stageAvisos = new Stage();
-    static Stage stageDashBoard = new Stage();
     public static FXMLLoader fxmlLoaderLogin;
 
     public static void main(String[] args) {

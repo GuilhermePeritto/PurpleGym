@@ -15,10 +15,10 @@ public class Produto {
     private Long idProduto;
     private String nome;
     private String descricao;
-    private BigInteger valor;
+    private String valor;
     private String quantidade;
 
-    public Produto(Long idProduto, String nome, String descricao, BigInteger valor, String quantidade) {
+    public Produto(Long idProduto, String nome, String descricao, String valor, String quantidade) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.descricao = descricao;
@@ -54,11 +54,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public BigInteger getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(BigInteger valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 

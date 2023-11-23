@@ -225,9 +225,9 @@ public class DashBoardController {
         Thread consultaThread = new Thread(() -> {
             List<Cliente> listaClientes;
             if(!pesquisaClienteTf.getText().isEmpty()) {
-                listaClientes = clienteRepository.findByNomeContainingIgnoreCase(pesquisaClienteTf.getText());
+                listaClientes = clienteRepository.findByNomeContainingIgnoreCaseOrderByNomeAsc(pesquisaClienteTf.getText());
             } else {
-                listaClientes = clienteRepository.findAll();
+                listaClientes = clienteRepository.findAllByOrderByNomeAsc();
             }
 
             // Atualiza a UI na thread principal após a consulta
@@ -356,7 +356,7 @@ public class DashBoardController {
         stage.setMaximized(true);
         stage.show();
         DashBoardController dashBoardController = fxmlLoader.getController();
-        dashBoardController.usuarioLogadoLbl.setText(loginController.getUsuarioLogado().getNome());
+        dashBoardController.usuarioLogadoLbl.setText("Olá, " + loginController.getUsuarioLogado().getNome());
     }
 
     public void fecharDashBoard() {

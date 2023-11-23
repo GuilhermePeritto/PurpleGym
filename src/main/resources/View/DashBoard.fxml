@@ -129,7 +129,40 @@
                   <Insets bottom="40.0" left="30.0" right="10.0" />
                </BorderPane.margin>
                <children>
-                  <AnchorPane fx:id="dashBoardConfiguracao" prefHeight="885.0" prefWidth="1840.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardConfiguracao" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="listaProdutosBtn1" contentDisplay="TOP" ellipsisString="" layoutX="84.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Grupos" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/cliente.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="relatorioProdutosBtn1" contentDisplay="TOP" layoutX="282.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Relatorios" textFill="WHITE">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Image/imprimir.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="dashBoardProdutos" prefHeight="885.0" prefWidth="1840.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button fx:id="listaProdutosBtn" contentDisplay="TOP" ellipsisString="" layoutX="84.0" layoutY="27.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="152.0" styleClass="background-icones-dashboard" stylesheets="@DashBoard.css" text="Produtos" textFill="WHITE">
@@ -218,7 +251,7 @@
                               </Button>
                               <HBox prefHeight="47.0" prefWidth="379.0" styleClass="background-barra-pesquisa" stylesheets="@DashBoard.css">
                                  <children>
-                                    <TextField fx:id="pesquisaClienteTf" prefHeight="46.0" prefWidth="323.0" styleClass="background-searchbar-textfield" stylesheets="@DashBoard.css">
+                                    <TextField fx:id="pesquisaClienteTf" prefHeight="46.0" prefWidth="323.0" promptText="Pesquisar cliente" styleClass="background-searchbar-textfield" stylesheets="@DashBoard.css">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -260,60 +293,59 @@
             </AnchorPane>
          </center>
          <top>
-            <HBox prefHeight="67.0" prefWidth="1856.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="75.0" prefWidth="736.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="moduloLbl" prefHeight="67.0" prefWidth="347.0" text="Home" textFill="WHITE">
+                  <HBox layoutX="239.0" layoutY="-36.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="75.0" prefWidth="520.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="usuarioLogadoLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="75.0" prefWidth="171.0" text="Label" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Circle fill="WHITE" radius="28.0" stroke="BLACK" strokeType="INSIDE">
+                           <HBox.margin>
+                              <Insets top="9.0" />
+                           </HBox.margin>
+                        </Circle>
+                        <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="306.0" styleClass="background-barra-pesquisa" stylesheets="@DashBoard.css">
+                           <children>
+                              <TextField fx:id="pesquisaClienteTf1" prefHeight="46.0" prefWidth="323.0" promptText="Pesquisar módulo" styleClass="background-searchbar-textfield" stylesheets="@DashBoard.css">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button minWidth="42.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="42.0" styleClass="icon" stylesheets="@DashBoard.css">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="32.0">
+                                       <image>
+                                          <Image url="@../Image/pesquisar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <Label fx:id="moduloLbl" layoutX="33.0" layoutY="9.0" prefHeight="54.0" prefWidth="125.0" text="Home" textFill="WHITE">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="24.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Button mnemonicParsing="false" styleClass="icon" stylesheets="@DashBoard.css">
-                     <HBox.margin>
-                        <Insets left="40.0" top="18.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="26.0">
-                           <image>
-                              <Image url="@../Image/pesquisar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <TextField prefHeight="47.0" prefWidth="481.0" promptText="Pesquisar" styleClass="background-barra-pesquisa" stylesheets="@DashBoard.css">
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Circle fill="WHITE" nodeOrientation="RIGHT_TO_LEFT" radius="24.0" stroke="BLACK" strokeType="INSIDE">
-                     <HBox.margin>
-                        <Insets left="300.0" top="9.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Circle>
-                  <Label fx:id="usuarioLogadoLbl" ellipsisString="" nodeOrientation="RIGHT_TO_LEFT" prefHeight="67.0" prefWidth="86.0" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
                   </Label>
                </children>
-            </HBox>
+            </AnchorPane>
          </top>
       </BorderPane>
    </center>

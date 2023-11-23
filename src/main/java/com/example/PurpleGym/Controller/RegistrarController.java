@@ -5,14 +5,20 @@ import com.example.PurpleGym.Model.Usuario;
 import com.example.PurpleGym.Repository.UsuarioRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import static javafx.stage.StageStyle.UNDECORATED;
 
 @Component
 public class RegistrarController {
@@ -56,6 +62,10 @@ public class RegistrarController {
     @FXML
     public PasswordField lblSenha;
 
+    public static Scene registrarView;
+
+    private ConfigurableApplicationContext springContext = Main.getContext();
+
     @FXML
     void minimizar(ActionEvent event) {
         Stage stage = (Stage) BtnMinimizar.getScene().getWindow();
@@ -91,12 +101,14 @@ public class RegistrarController {
     }
     @FXML
     void voltarTelaEntrar(ActionEvent event) throws Exception {
-        Main.trocarTela("login");
+        LoginController loginController = new LoginController();
+        loginController.showLogin(Main.stage);
     }
 
     @FXML
     void voltar(ActionEvent event) throws Exception {
-        Main.trocarTela("login");
+        LoginController loginController = new LoginController();
+        loginController.showLogin(Main.stage);
     }
 
     @FXML
@@ -113,6 +125,15 @@ public class RegistrarController {
     @FXML
     void loginGoogle(ActionEvent event) {
         System.out.println("Login Google");
+    }
+
+    public void showRegistrar(Stage stage) throws Exception {
+        FXMLLoader fxmlLoaderRegistrar = new FXMLLoader(getClass().getClassLoader().getResource("View/Registrar.fxml"));
+        fxmlLoaderRegistrar.setControllerFactory(springContext::getBean);
+        Parent fxmlRegistrarView = fxmlLoaderRegistrar.load();
+        registrarView = new Scene(fxmlRegistrarView, 975, 501);
+        stage.setScene(registrarView);
+        stage.show();
     }
 
 }

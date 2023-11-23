@@ -304,7 +304,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Circle>
-                  <Label fx:id="usuarioLogadoLbl" ellipsisString="" nodeOrientation="RIGHT_TO_LEFT" prefHeight="67.0" prefWidth="86.0" text="lalalalalresaas" textFill="WHITE">
+                  <Label fx:id="usuarioLogadoLbl" ellipsisString="" nodeOrientation="RIGHT_TO_LEFT" prefHeight="67.0" prefWidth="86.0" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>

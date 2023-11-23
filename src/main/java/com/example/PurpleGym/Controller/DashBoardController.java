@@ -14,10 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -72,6 +75,9 @@ public class DashBoardController {
     private Label moduloLbl;
 
     @FXML
+    private Label usuarioLogadoLbl;
+
+    @FXML
     private AnchorPane dashBoardListCliente;
 
     @FXML
@@ -95,6 +101,8 @@ public class DashBoardController {
 
     @Autowired
     public UsuarioRepository usuarioRepository;
+
+    public static Scene dashBoardView;
 
     private static final double ORIGINAL_WIDTH = 23.0;
     private static final double EXPANDED_WIDTH = 250.0;
@@ -332,5 +340,16 @@ public class DashBoardController {
         timeline.getKeyFrames().add(keyFrameLine);
 
         timeline.play();
+    }
+
+    public void showDashBoard(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/DashBoard.fxml"));
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent fxmlDashBoardView = fxmlLoader.load();
+        dashBoardView = new Scene(fxmlDashBoardView);
+        stage.setScene(dashBoardView);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setMaximized(true);
+        stage.show();
     }
 }

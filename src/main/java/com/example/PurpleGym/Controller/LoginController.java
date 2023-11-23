@@ -15,10 +15,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 import static javafx.scene.paint.Color.RED;
+import static javafx.stage.StageStyle.UNDECORATED;
 
 @Component
 public class LoginController {
@@ -49,6 +53,12 @@ public class LoginController {
     @FXML
     private Label LblAviso;
 
+    private Usuario usuarioLogado = new Usuario();
+
+    public static Scene loginView;
+
+    private ConfigurableApplicationContext springContext = Main.getContext();
+
     @FXML
     void sair(ActionEvent event) {
         Platform.exit();
@@ -61,13 +71,15 @@ public class LoginController {
     }
 
     @FXML
-    void entrar(ActionEvent event) {
+    void entrar(ActionEvent event) throws IOException {
         LoginController loginController = Main.fxmlLoaderLogin.getController();
         Usuario usuario = usuarioRepository.findByEmail(lblemail.getText());
 
         if (usuario != null && passwordEncoder.matches(lblsenha.getText(), usuario.getSenha())) {
-            // Senha correta, faça o que for necessário aqui...
-            Main.trocarTela("dashboard");
+            usuarioLogado = usuario;
+            DashBoardController dashBoardController = new DashBoardController();
+            Main.stage.close();
+            dashBoardController.showDashBoard(new Stage());
         } else {
             // Senha incorreta ou usuário não encontrado
             loginController.LblAviso.setTextFill(RED);
@@ -76,9 +88,11 @@ public class LoginController {
     }
 
     @FXML
-    void registrar() throws Exception {
+    void registrar(ActionEvent event) throws Exception {
         try {
-            Main.trocarTela("registrar");
+            RegistrarController registrarController = new RegistrarController();
+            registrarController.showRegistrar(Main.stage);
+            fecharLogin();
             LblAviso.setText("");
         } catch (Exception e) {
             LblAviso.setTextFill(RED);
@@ -88,10 +102,19 @@ public class LoginController {
 
     public void showLogin(Stage stage) throws Exception {
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(getClass().getClassLoader().getResource("View/Login.fxml"));
-        Parent parent = fxmlLoaderLogin.load();
-        AvisoController avisoController = fxmlLoaderLogin.getController();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+        fxmlLoaderLogin.setControllerFactory(springContext::getBean);
+        Parent fxmlLoginView = fxmlLoaderLogin.load();
+        loginView = new Scene(fxmlLoginView, 975, 501);
+        stage.setScene(loginView);
         stage.show();
+    }
+
+    public void fecharLogin() {
+        Stage stage = (Stage) BtnSair.getScene().getWindow();
+        stage.close();
+    }
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
     }
 }

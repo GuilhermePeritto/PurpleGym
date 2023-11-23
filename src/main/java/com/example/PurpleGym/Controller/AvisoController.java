@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -23,10 +24,13 @@ public class AvisoController {
 
     public static Boolean voltarAoMenu = false;
 
+    private ConfigurableApplicationContext springContext = Main.getContext();
+
 
     public void showAlerta(Stage stage, String mensagem, Boolean voltarAoMenu) throws IOException {
         this.voltarAoMenu = voltarAoMenu;
         FXMLLoader fxmlLoaderAviso = new FXMLLoader(getClass().getClassLoader().getResource("View/Aviso.fxml"));
+        fxmlLoaderAviso.setControllerFactory(Main.getContext()::getBean);
         Parent parent = fxmlLoaderAviso.load();
         AvisoController avisoController = fxmlLoaderAviso.getController();
         avisoController.alterarMensagem(mensagem);
@@ -40,11 +44,12 @@ public class AvisoController {
 
     @FXML
     void onClickBtnOk(ActionEvent event) throws Exception {
-        if (voltarAoMenu) {
+        if (!voltarAoMenu) {
             fecharAviso();
             return;
         }
-        Main.trocarTela("login");
+        LoginController loginController = Main.fxmlLoaderLogin.getController();
+        loginController.showLogin(Main.stage);
         fecharAviso();
     }
 

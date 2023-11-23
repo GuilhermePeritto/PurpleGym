@@ -48,7 +48,7 @@ public class AvisoController {
             fecharAviso();
             return;
         }
-        LoginController loginController = Main.fxmlLoaderLogin.getController();
+        LoginController loginController = new LoginController();
         loginController.showLogin(Main.stage);
         fecharAviso();
     }

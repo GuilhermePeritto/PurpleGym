@@ -79,7 +79,7 @@ public class LoginController {
             usuarioLogado = usuario;
             DashBoardController dashBoardController = new DashBoardController();
             Main.stage.close();
-            dashBoardController.showDashBoard(new Stage());
+            dashBoardController.showDashBoard(new Stage(), loginController);
         } else {
             // Senha incorreta ou usuário não encontrado
             loginController.LblAviso.setTextFill(RED);
@@ -116,5 +116,9 @@ public class LoginController {
 
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
     }
 }

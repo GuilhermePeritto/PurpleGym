@@ -187,7 +187,11 @@ public class DashBoardController {
     }
 
     @FXML
-    private void LogoutBtnEvent(ActionEvent event) {
+    private void LogoutBtnEvent(ActionEvent event) throws Exception {
+        LoginController loginController = new LoginController();
+        loginController.showLogin(Main.stage);
+        fecharDashBoard();
+
     }
 
     @FXML
@@ -342,7 +346,7 @@ public class DashBoardController {
         timeline.play();
     }
 
-    public void showDashBoard(Stage stage) throws IOException {
+    public void showDashBoard(Stage stage, LoginController loginController) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("View/DashBoard.fxml"));
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
         Parent fxmlDashBoardView = fxmlLoader.load();
@@ -351,5 +355,12 @@ public class DashBoardController {
         stage.initStyle(StageStyle.DECORATED);
         stage.setMaximized(true);
         stage.show();
+        DashBoardController dashBoardController = fxmlLoader.getController();
+        dashBoardController.usuarioLogadoLbl.setText(loginController.getUsuarioLogado().getNome());
+    }
+
+    public void fecharDashBoard() {
+        Stage stage = (Stage) homeBtn.getScene().getWindow();
+        stage.close();
     }
 }

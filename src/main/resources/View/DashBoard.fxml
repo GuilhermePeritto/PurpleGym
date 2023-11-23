@@ -286,6 +286,8 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="dashBoardListGrupo" prefHeight="485.0" prefWidth="696.0" stylesheets="@DashBoard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="dashBoardListProdutos" prefHeight="485.0" prefWidth="696.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
                <opaqueInsets>
                   <Insets />

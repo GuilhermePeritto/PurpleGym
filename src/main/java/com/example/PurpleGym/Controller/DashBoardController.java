@@ -15,12 +15,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -102,7 +105,9 @@ public class DashBoardController {
     @FXML
     private TextField pesquisaClienteTf;
 
-    private Integer itensPorPagina = 15;// Defina o número de itens por página conforme necessário
+    private Integer itensPorPagina = 15;
+
+    private Integer produtosPorPagina = 8;
 
     private ObservableList<Node> paginatedClientes;
 
@@ -135,9 +140,25 @@ public class DashBoardController {
         setMouseEvents();
 
         paginatedClientes = FXCollections.observableArrayList();
-        paginacaoCliente.setPageFactory(this::createPage);
+        paginacaoCliente.setPageFactory(this::createPageCliente);
         paginatedProdutos = FXCollections.observableArrayList();
-        paginacaoProduto.setPageFactory(this::createPage);
+        paginacaoProduto.setPageFactory(this::createPageProduto);
+
+        // Calcula dinamicamente o número de itens por página para clientes com base no tamanho do componente
+        double clienteNodeHeight = 150.0; // Ajuste o tamanho médio desejado para cada nó de cliente
+        int numLinhasClientes = (int) (dashBoardListCliente.getHeight() / clienteNodeHeight);
+
+        // Define o número de itens por página para clientes com base no número de linhas
+        int itensPorPaginaClientes = numLinhasClientes;
+        paginacaoCliente.setPageCount(1); // Apenas uma página para clientes
+
+        // Calcula dinamicamente o número de itens por página para produtos com base na altura da tela
+        double produtoNodeHeight = 150.0; // Ajuste o tamanho médio desejado para cada nó de produto
+        int numLinhasProdutos = (int) (Screen.getPrimary().getVisualBounds().getHeight() / produtoNodeHeight);
+
+        // Define o número de itens por página para produtos com base no número de linhas
+        itensPorPagina = numLinhasProdutos;
+        paginacaoProduto.setPageCount(1); // Apenas uma página para produtos
 
     }
 
@@ -240,6 +261,7 @@ public class DashBoardController {
     private void ListaProdutosBtnEvent(ActionEvent event) throws IOException {
         this.showPane(dashBoardListProdutos);
         paginacaoCliente.setVisible(false);
+        paginacaoProduto.setVisible(true);
 
     }
 
@@ -281,13 +303,14 @@ public class DashBoardController {
                         paginatedProdutos.add(borderPane);
                     }
 
-                    int pageCount = (int) Math.ceil((double) paginatedProdutos.size() / itensPorPagina);
+                    int pageCount = (int) Math.ceil((double) paginatedProdutos.size() / produtosPorPagina);
                     paginacaoProduto.setPageCount(pageCount);
                     paginacaoProduto.setCurrentPageIndex(0);
-                    paginacaoProduto.setPageFactory(this::createPage);
+                    paginacaoProduto.setPageFactory(this::createPageProduto);
 
                     // Mostra a paginação
                     paginacaoProduto.setVisible(true);
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -301,6 +324,23 @@ public class DashBoardController {
 
         // Inicia a thread de consulta
         consultaThread.start();
+    }
+
+    private int calcularProdutosPorPagina() {
+        // Considere a largura disponível para exibição dos produtos
+        double larguraDisponivel = dashBoardProdutos.getWidth(); // ou algum valor específico
+
+        // Tamanho médio do item (ajuste conforme necessário)
+        double tamanhoMedioItem = 330.0; // substitua pelo tamanho real
+
+        // Calcula a quantidade de produtos por linha
+        int produtosPorLinha = (int) (larguraDisponivel / tamanhoMedioItem);
+
+        // Calcula a quantidade de linhas (ajuste conforme necessário)
+        int linhasPorPagina = (int) (dashBoardProdutos.getHeight() / 324.0);
+
+        // Calcula o total de produtos por página
+        return produtosPorLinha * linhasPorPagina;
     }
 
 
@@ -340,7 +380,7 @@ public class DashBoardController {
                     int pageCount = (int) Math.ceil((double) paginatedClientes.size() / itensPorPagina);
                     paginacaoCliente.setPageCount(pageCount);
                     paginacaoCliente.setCurrentPageIndex(0);
-                    paginacaoCliente.setPageFactory(this::createPage);
+                    paginacaoCliente.setPageFactory(this::createPageCliente);
 
                     // Mostra a paginação
                     paginacaoCliente.setVisible(true);
@@ -360,11 +400,10 @@ public class DashBoardController {
         consultaThread.start();
     }
 
-    private void trocarPaginas(Pagination paginacaoCliente) {
-        paginacaoCliente.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            paginacaoCliente.setCurrentPageIndex(newIndex.intValue());
+    private void trocarPaginas(Pagination paginacao) {
+        paginacao.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            paginacao.setCurrentPageIndex(newIndex.intValue());
         });
-
     }
 
     @FXML
@@ -373,7 +412,7 @@ public class DashBoardController {
         clienteController.start(new Stage());
     }
 
-    private Node createPage(int pageIndex) {
+    private Node createPageCliente(int pageIndex) {
         int fromIndex = pageIndex * itensPorPagina;
         int toIndex = Math.min(fromIndex + itensPorPagina, paginatedClientes.size());
 
@@ -388,6 +427,45 @@ public class DashBoardController {
         AnchorPane.setRightAnchor(listView, 0.0);
 
         return anchorPane;
+    }
+
+    private Node createPageProduto(int pageIndex) {
+        int fromIndex = pageIndex * produtosPorPagina;
+        int toIndex = Math.min(fromIndex + produtosPorPagina, paginatedProdutos.size());
+
+        GridPane gridPane = new GridPane();
+
+        gridPane.setPadding(new Insets(20)); // Espaçamento interno da GridPane
+        gridPane.setHgap(20); // Espaçamento horizontal entre os itens
+        gridPane.setVgap(20); // Espaçamento vertical entre os itens
+
+        int col = 0;
+        int row = 0;
+
+        double produtoNodeWidth = 150.0; // Ajuste o tamanho médio desejado para cada nó de produto
+        int numColunasProdutos = (int) Math.ceil(dashBoardListProdutos.getWidth() / produtoNodeWidth);
+
+        for (int i = fromIndex; i < toIndex; i++) {
+            Node produtoNode = paginatedProdutos.get(i);
+            gridPane.add(produtoNode, col, row);
+
+            col++;
+            if (col == 4) { // Mude para o número desejado de colunas
+                col = 0;
+                row++;
+            }
+        }
+
+        // Centralize o GridPane na tela
+        gridPane.setAlignment(Pos.CENTER);
+
+        AnchorPane anchorPane = new AnchorPane(gridPane);
+        AnchorPane.setTopAnchor(gridPane, 0.0);
+        AnchorPane.setBottomAnchor(gridPane, 0.0);
+        AnchorPane.setLeftAnchor(gridPane, 0.0);
+        AnchorPane.setRightAnchor(gridPane, 0.0);
+
+        return new AnchorPane(gridPane);
     }
 
     private void showPane(AnchorPane pane) {

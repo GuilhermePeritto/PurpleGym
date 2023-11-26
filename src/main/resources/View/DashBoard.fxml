@@ -335,7 +335,7 @@
                         <HBox layoutX="3.0" layoutY="429.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="61.0" prefWidth="690.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="428.0" />
                         <AnchorPane fx:id="listProduto" layoutX="3.0" layoutY="104.0" prefHeight="386.0" prefWidth="690.0" styleClass="background-listview" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="103.0">
                            <children>
-                              <Pagination fx:id="paginacaoProduto" layoutX="241.0" layoutY="101.0" maxPageIndicatorCount="3" prefHeight="381.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Pagination fx:id="paginacaoProduto" layoutX="241.0" layoutY="101.0" maxPageIndicatorCount="3" prefHeight="381.0" prefWidth="682.0" styleClass="background-listview" stylesheets="@DashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </children>

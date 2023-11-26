@@ -105,7 +105,8 @@ public class DashBoardController {
     @FXML
     private TextField pesquisaClienteTf;
 
-    private Integer itensPorPagina = 15;
+    private Integer itensPorPaginaCliente = 15;
+    private Integer itensPorPaginaProduto = 15;
 
     private Integer produtosPorPagina = 8;
 
@@ -156,8 +157,8 @@ public class DashBoardController {
         double produtoNodeHeight = 150.0; // Ajuste o tamanho médio desejado para cada nó de produto
         int numLinhasProdutos = (int) (Screen.getPrimary().getVisualBounds().getHeight() / produtoNodeHeight);
 
-        // Define o número de itens por página para produtos com base no número de linhas
-        itensPorPagina = numLinhasProdutos;
+        itensPorPaginaCliente = 15;// Define o número de itens por página para produtos com base no número de linhas
+        itensPorPaginaProduto = numLinhasProdutos;
         paginacaoProduto.setPageCount(1); // Apenas uma página para produtos
 
     }
@@ -326,23 +327,6 @@ public class DashBoardController {
         consultaThread.start();
     }
 
-    private int calcularProdutosPorPagina() {
-        // Considere a largura disponível para exibição dos produtos
-        double larguraDisponivel = dashBoardProdutos.getWidth(); // ou algum valor específico
-
-        // Tamanho médio do item (ajuste conforme necessário)
-        double tamanhoMedioItem = 330.0; // substitua pelo tamanho real
-
-        // Calcula a quantidade de produtos por linha
-        int produtosPorLinha = (int) (larguraDisponivel / tamanhoMedioItem);
-
-        // Calcula a quantidade de linhas (ajuste conforme necessário)
-        int linhasPorPagina = (int) (dashBoardProdutos.getHeight() / 324.0);
-
-        // Calcula o total de produtos por página
-        return produtosPorLinha * linhasPorPagina;
-    }
-
 
 
     @FXML
@@ -377,7 +361,7 @@ public class DashBoardController {
                         paginatedClientes.add(borderPane);
                     }
 
-                    int pageCount = (int) Math.ceil((double) paginatedClientes.size() / itensPorPagina);
+                    int pageCount = (int) Math.ceil((double) paginatedClientes.size() / itensPorPaginaCliente);
                     paginacaoCliente.setPageCount(pageCount);
                     paginacaoCliente.setCurrentPageIndex(0);
                     paginacaoCliente.setPageFactory(this::createPageCliente);
@@ -413,8 +397,8 @@ public class DashBoardController {
     }
 
     private Node createPageCliente(int pageIndex) {
-        int fromIndex = pageIndex * itensPorPagina;
-        int toIndex = Math.min(fromIndex + itensPorPagina, paginatedClientes.size());
+        int fromIndex = pageIndex * itensPorPaginaCliente;
+        int toIndex = Math.min(fromIndex + itensPorPaginaCliente, paginatedClientes.size());
 
         ListView<Node> listView = new ListView<>();
         listView.setItems(FXCollections.observableArrayList(paginatedClientes.subList(fromIndex, toIndex)));
@@ -434,39 +418,41 @@ public class DashBoardController {
         int toIndex = Math.min(fromIndex + produtosPorPagina, paginatedProdutos.size());
 
         GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(20));
+        gridPane.setHgap(20);
+        gridPane.setVgap(20);
 
-        gridPane.setPadding(new Insets(20)); // Espaçamento interno da GridPane
-        gridPane.setHgap(20); // Espaçamento horizontal entre os itens
-        gridPane.setVgap(20); // Espaçamento vertical entre os itens
-
-        int col = 0;
-        int row = 0;
-
-        double produtoNodeWidth = 150.0; // Ajuste o tamanho médio desejado para cada nó de produto
-        int numColunasProdutos = (int) Math.ceil(dashBoardListProdutos.getWidth() / produtoNodeWidth);
+        double produtoNodeWidth = 150.0;
+        int numColunasProdutos = (int) (dashBoardListProdutos.getPrefWidth() / (produtoNodeWidth + 20));
 
         for (int i = fromIndex; i < toIndex; i++) {
             Node produtoNode = paginatedProdutos.get(i);
+            int col = (i - fromIndex) % numColunasProdutos;
+            int row = (i - fromIndex) / numColunasProdutos;
             gridPane.add(produtoNode, col, row);
-
-            col++;
-            if (col == 4) { // Mude para o número desejado de colunas
-                col = 0;
-                row++;
-            }
         }
+
+        ScrollPane scrollPane = new ScrollPane(gridPane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
 
         // Centralize o GridPane na tela
         gridPane.setAlignment(Pos.CENTER);
 
-        AnchorPane anchorPane = new AnchorPane(gridPane);
-        AnchorPane.setTopAnchor(gridPane, 0.0);
-        AnchorPane.setBottomAnchor(gridPane, 0.0);
-        AnchorPane.setLeftAnchor(gridPane, 0.0);
-        AnchorPane.setRightAnchor(gridPane, 0.0);
+        AnchorPane anchorPane = new AnchorPane(scrollPane);
+        anchorPane.setStyle("-fx-background-color: transparent;");
 
-        return new AnchorPane(gridPane);
+        // Configure as âncoras do ScrollPane dentro da AnchorPane
+        AnchorPane.setTopAnchor(scrollPane, 0.0);
+        AnchorPane.setBottomAnchor(scrollPane, 0.0);
+        AnchorPane.setLeftAnchor(scrollPane, 0.0);
+        AnchorPane.setRightAnchor(scrollPane, 0.0);
+
+        return anchorPane;
     }
+
+
 
     private void showPane(AnchorPane pane) {
         dashBoardClientes.setVisible(pane == dashBoardClientes);

@@ -62,6 +62,8 @@ public class ClienteController {
 
     public static Cliente cliente;
 
+    public Boolean desabilitar = false;
+
     @FXML
     public void initialize() {
         // Preencher o ComboBox de cidades
@@ -87,7 +89,7 @@ public class ClienteController {
 
         // Obtém a instância do controlador
         ClienteController clienteController = fxmlLoaderCliente.getController();
-
+        clienteController.desabilitarCampos(desabilitar);
         // Chama o método alterarCampos com o cliente fornecido
         clienteController.alterarCampos(cliente);
 
@@ -167,5 +169,30 @@ public class ClienteController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void desabilitarCampos(Boolean desabilitar) {
+        if (desabilitar) {
+            nomeLbl.setDisable(true);
+            cpfLbl.setDisable(true);
+            whatsLbl.setDisable(true);
+            outroContatoLbl.setDisable(true);
+            emailLbl.setDisable(true);
+            dataNascLbl.setDisable(true);
+            enderecoLbl.setDisable(true);
+            numeroLbl.setDisable(true);
+            complementoLbl.setDisable(true);
+            cepLbl.setDisable(true);
+            cidadeCb.setDisable(true);
+            ufCb.setDisable(true);
+        }
+    }
+
+    public static Cliente getCliente() {
+        return cliente;
+    }
+
+    public static void setCliente(Cliente cliente) {
+        ClienteController.cliente = cliente;
     }
 }

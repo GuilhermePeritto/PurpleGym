@@ -69,7 +69,9 @@ public class ClientesListController {
     private void InspecionarClienteBtnEvent(ActionEvent event) throws IOException {
         ClienteController clienteController = new ClienteController();
         clienteController.setData(cliente);
+        clienteController.desabilitar = true;
         clienteController.start(new Stage());
+        clienteController.setCliente(null);
     }
 
     @FXML

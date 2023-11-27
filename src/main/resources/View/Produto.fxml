@@ -11,13 +11,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@Cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.ClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@Cliente.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.ProdutoController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@Cliente.css" BorderPane.alignment="CENTER">
          <bottom>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="72.0" prefWidth="998.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#salvar" prefHeight="57.0" prefWidth="150.0" styleClass="background-button-salvar" stylesheets="@Cliente.css" text="Salvar">
+                  <Button fx:id="btnSalvar" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#salvarProduto" prefHeight="57.0" prefWidth="150.0" styleClass="background-button-salvar" stylesheets="@Cliente.css" text="Salvar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin>
@@ -32,7 +32,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fecharTela" prefHeight="57.0" prefWidth="150.0" styleClass="background-button-voltar" stylesheets="@Cliente.css" text="Cancelar">
+                  <Button fx:id="btnCancelar" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#cancelarProduto" prefHeight="57.0" prefWidth="150.0" styleClass="background-button-voltar" stylesheets="@Cliente.css" text="Cancelar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin>
@@ -53,11 +53,35 @@
          <top>
             <AnchorPane prefHeight="252.0" prefWidth="798.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="239.0" layoutY="8.0" prefHeight="229.0" prefWidth="306.0" styleClass="background-imgview" stylesheets="@Produto.css">
-                     <children>
-                        <ImageView fitHeight="236.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </AnchorPane>
+                  <ImageView layoutX="377.0" layoutY="110.0">
+                     <image>
+                        <Image url="@../Image/imagem.png" />
+                     </image>
+                  </ImageView>
+                  <BorderPane fx:id="backgroundImagem" layoutX="218.0" layoutY="8.0" prefHeight="222.0" prefWidth="341.0" styleClass="background-imagem" stylesheets="@Produto.css">
+                     <center>
+                        <ImageView fx:id="imgProduto" fitHeight="250.0" fitWidth="363.0" pickOnBounds="true" preserveRatio="true" styleClass="background-imagem" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets top="-56.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </center>
+                     <top>
+                        <HBox prefHeight="56.0" prefWidth="341.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnEditarImagem" mnemonicParsing="false" onAction="#uploadImagem" prefHeight="27.0" prefWidth="27.0" styleClass="background-button" stylesheets="@Produto.css">
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0">
+                                       <image>
+                                          <Image url="@../Image/editar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </top>
+                  </BorderPane>
                </children>
             </AnchorPane>
          </top>

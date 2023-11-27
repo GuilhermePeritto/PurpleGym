@@ -17,13 +17,15 @@ public class Produto {
     private String descricao;
     private String valor;
     private String quantidade;
+    private String localDaImagem;
 
-    public Produto(Long idProduto, String nome, String descricao, String valor, String quantidade) {
+    public Produto(Long idProduto, String nome, String descricao, String valor, String quantidade, String localDaImagem) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
         this.quantidade = quantidade;
+        this.localDaImagem = localDaImagem;
     }
 
     public Produto() {
@@ -70,14 +72,23 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
+    public String getLocalDaImagem() {
+        return localDaImagem;
+    }
+
+    public void setLocalDaImagem(String localDaImagem) {
+        this.localDaImagem = localDaImagem;
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
                 "idProduto=" + idProduto +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", valor=" + valor +
+                ", valor='" + valor + '\'' +
                 ", quantidade='" + quantidade + '\'' +
+                ", localDaImagem='" + localDaImagem + '\'' +
                 '}';
     }
 }

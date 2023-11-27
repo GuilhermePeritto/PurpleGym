@@ -268,8 +268,8 @@ public class DashBoardController {
 
     @FXML
     private void AdicionarProdutoBtnEvent(ActionEvent event) throws IOException {
-//        ProdutoController produtoController = new ProdutoController();
-//        produtoController.start(new Stage());
+        ProdutoController produtoController = new ProdutoController();
+        produtoController.start(new Stage());
     }
 
     @FXML

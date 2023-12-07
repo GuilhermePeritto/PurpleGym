@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" onMouseReleased="#released" prefHeight="501.0" prefWidth="975.0" style="-fx-background-color: #14161c;" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PurpleGym.Controller.LoginController">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="337.0" BorderPane.alignment="CENTER">
          <children>

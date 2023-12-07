@@ -7,12 +7,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -53,11 +55,15 @@ public class LoginController {
     @FXML
     private Label LblAviso;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     private Usuario usuarioLogado = new Usuario();
 
     public static Scene loginView;
 
     private ConfigurableApplicationContext springContext = Main.getContext();
+
 
     @FXML
     void sair(ActionEvent event) {
@@ -120,5 +126,24 @@ public class LoginController {
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
+    }
+
+    @FXML
+    void pressed(MouseEvent event) {
+        Stage stage = (Stage) BtnEntrar.getScene().getWindow();
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    void dragged(MouseEvent event) {
+        Stage stage = (Stage) BtnEntrar.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
+
+    @FXML
+    void released(MouseEvent event) {
+        Stage stage = (Stage) BtnEntrar.getScene().getWindow();
     }
 }

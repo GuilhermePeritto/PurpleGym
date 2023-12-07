@@ -1,5 +1,6 @@
 package com.example.PurpleGym.Controller;
 
+import com.example.PurpleGym.Core.Core;
 import com.example.PurpleGym.Main;
 import com.example.PurpleGym.Model.Usuario;
 import com.example.PurpleGym.Repository.UsuarioRepository;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -65,6 +67,23 @@ public class RegistrarController {
     public static Scene registrarView;
 
     private ConfigurableApplicationContext springContext = Main.getContext();
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    void pressed(javafx.scene.input.MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    void dragged(javafx.scene.input.MouseEvent event) {
+        Window stage = BtnFechar.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
+
 
     @FXML
     void minimizar(ActionEvent event) {
@@ -133,7 +152,11 @@ public class RegistrarController {
         Parent fxmlRegistrarView = fxmlLoaderRegistrar.load();
         registrarView = new Scene(fxmlRegistrarView, 975, 501);
         stage.setScene(registrarView);
+        stage.initStyle(UNDECORATED);
+
         stage.show();
     }
+
+
 
 }

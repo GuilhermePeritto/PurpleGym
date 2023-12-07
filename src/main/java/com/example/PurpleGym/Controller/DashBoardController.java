@@ -27,6 +27,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -127,6 +132,9 @@ public class DashBoardController {
     public ProdutoRepository produtoRepository;
 
     public static Scene dashBoardView;
+
+    @FXML
+    public AnchorPane dashBoardRelClientes;
 
     private static final double ORIGINAL_WIDTH = 23.0;
     private static final double EXPANDED_WIDTH = 250.0;

@@ -47,7 +47,8 @@ button-registrar:pressed {
 .textfield-custom {
     -fx-background-color: #14161c; /* Cor de fundo personalizada */
     -fx-text-fill: #FFFFFFFF; /* Cor do texto no textfield */
-    -fx-border-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62); /* Cor da borda personalizada */
+    -fx-border-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);
+   /* -fx-border-color: linear-gradient(to right , #cd3bca, #532c89 ,#1f2a62);/* Cor da borda personalizada */
     -fx-border-radius: 20px; /* Isso define as bordas redondas */
     -fx-padding: 0 16;
 }
